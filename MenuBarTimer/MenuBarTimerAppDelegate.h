@@ -7,15 +7,29 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MyStatusMenuDelegate.h"
+#import "MenuForIdleDelegate.h"
+
+enum MenuBarTimerState {
+    MBTS_IDLE,
+    MBTS_TIMING,
+    MBTS_PAUSED,
+    MBTS_FINISHED,
+    
+    MBTS_INVALID
+};
 
 @interface MenuBarTimerAppDelegate : NSObject <NSApplicationDelegate> {
-    IBOutlet NSMenu *statusMenu;
+    IBOutlet NSMenu *menuForStateIdle;
+    IBOutlet NSMenu *menuForStateTimingOrPaused;
+    IBOutlet NSMenuItem *menuItemOfPauseOrContinue;
     IBOutlet NSTextField *durationInput;
-    IBOutlet NSView *duarationInputView;
+    IBOutlet NSView *durationInputView;
     NSStatusItem *statusItem;
+    
+    enum MenuBarTimerState state;
 }
 
 - (IBAction)openStatusItem:(id)sender;
+- (IBAction)startTimer:(id)sender;
 
 @end
