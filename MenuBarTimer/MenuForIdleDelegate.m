@@ -21,7 +21,7 @@
 }
 
 - (void)menuWillOpen:(NSMenu *)menu {
-    NSTimer* timer = [NSTimer timerWithTimeInterval:0.1
+    NSTimer* timer = [NSTimer timerWithTimeInterval:0.15
                             target:self
                             selector:@selector(focusingTimerFire:)
                             userInfo:nil
