@@ -85,7 +85,7 @@ static int parseTimeString(NSString* text) {
     return (int)ret;
 }
 
-void AutomatonPanic(NSString* msg) {
+static void AutomatonPanic(NSString* msg) {
     NSLog(@"AutomanonPanic: %@", msg);
     for (;;);
 }
@@ -126,7 +126,7 @@ void AutomatonPanic(NSString* msg) {
 // TODO: Currently, the text field is cleared to avoid errors again (eg., when you close the menu).
 //       Find a better way to distinguish the "Action" of text field when an Enter is typed and when
 //       the menu is closed.
-- (IBAction)startTimer:(id)sender {
+- (IBAction)clickGo:(id)sender {
     if (state != MBTS_IDLE) AutomatonPanic(@"Expect state = MBTS_IDLE");
     NSString *text = [durationInput stringValue];
     int time = parseTimeString(text);
@@ -140,8 +140,34 @@ void AutomatonPanic(NSString* msg) {
         [durationInput setStringValue:@""];
         [theAlert runModal];
     } else {
+        [menuForStateIdle cancelTracking];
         [self setUpForStateTiming:time];
     }
+}
+
+- (IBAction)clickPauseOrContinue:(id)sender {
+    if (state == MBTS_TIMING) {
+        // The action is "pause".
+        [menuForStateTimingOrPaused cancelTracking];
+        [self setUpForStatePaused];
+    } else if (state == MBTS_PAUSED) {
+        // The action is "continue".
+        [menuForStateTimingOrPaused cancelTracking];
+        [self setUpForStateTiming:timingSeconds];
+    } else {
+        AutomatonPanic(@"Expect state = MBTS_TIMING or MBTS_PAUSED");
+    }
+}
+
+- (IBAction)clickStop:(id)sender {
+    if (state != MBTS_TIMING && state != MBTS_PAUSED)
+        AutomatonPanic(@"Expect state = MBTS_TIMING or MBTS_PAUSED");
+    if (state == MBTS_TIMING) {
+        [timingTimer invalidate];
+        timingTimer = nil;
+    }
+    [menuForStateTimingOrPaused cancelTracking];
+    [self setUpForStateIdle];
 }
 
 - (void)renderSeconds:(double)seconds {

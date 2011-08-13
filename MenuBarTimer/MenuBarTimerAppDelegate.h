@@ -27,9 +27,12 @@ enum MenuBarTimerState {
     NSStatusItem *statusItem;
     
     enum MenuBarTimerState state;
+    NSMenuItem *clickPauseOrContinue;
 }
 
 - (IBAction)openStatusItem:(id)sender;
-- (IBAction)startTimer:(id)sender;
+- (IBAction)clickGo:(id)sender;
+- (IBAction)clickPauseOrContinue:(id)sender;
+- (IBAction)clickStop:(id)sender;
 
 @end
