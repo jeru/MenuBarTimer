@@ -209,7 +209,7 @@
 		C747675B13F632F2001A3359 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				ORGANIZATIONNAME = "The Chinese University of Hong Kong";
+				ORGANIZATIONNAME = "Cheng Sheng";
 			};
 			buildConfigurationList = C747675E13F632F2001A3359 /* Build configuration list for PBXProject "MenuBarTimer" */;
 			compatibilityVersion = "Xcode 3.2";

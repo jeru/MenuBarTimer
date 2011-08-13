@@ -3,7 +3,7 @@
 //  MenuBarTimerTests
 //
 //  Created by Cheng Sheng on 13/8/11.
-//  Copyright 2011 The Chinese University of Hong Kong. All rights reserved.
+//  Copyright 2011 Cheng Sheng. All rights reserved.
 //
 
 #import "MenuBarTimerTests.h"
