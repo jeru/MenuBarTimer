@@ -7,11 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MyStatusMenuDelegate.h"
 
 @interface MenuBarTimerAppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet NSMenu *statusMenu;
+    IBOutlet NSTextField *durationInput;
+    IBOutlet NSView *duarationInputView;
     NSStatusItem *statusItem;
 }
-- (IBAction)exitApp:(id)sender;
+
+- (IBAction)openStatusItem:(id)sender;
 
 @end

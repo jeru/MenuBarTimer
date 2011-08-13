@@ -20,4 +20,24 @@
     return self;
 }
 
+- (void)menuWillOpen:(NSMenu *)menu {
+    NSTimer* timer = [NSTimer timerWithTimeInterval:0.1
+                            target:self
+                            selector:@selector(focusingTimerFire:)
+                            userInfo:nil
+                            repeats:YES];
+    focusingTimer = timer;
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSEventTrackingRunLoopMode];
+}
+
+- (void)menuNeedsUpdate:(NSMenu *)menu {
+}
+
+- (void)focusingTimerFire:(NSTimer*)theTimer {
+    NSTimer* timer = focusingTimer;
+    focusingTimer = nil;
+    [timer invalidate];
+    [[durationInput window] makeFirstResponder:durationInput];
+}
+
 @end

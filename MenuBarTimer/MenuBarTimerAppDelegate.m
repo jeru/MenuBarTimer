@@ -21,8 +21,8 @@
     [statusItem setHighlightMode:YES];
 }
 
-- (IBAction)exitApp:(id)sender {
-    [[NSApplication sharedApplication] terminate:self];
+- (IBAction)openStatusItem:(id)sender {
+    NSLog(@"Hello\n");
 }
 
 @end

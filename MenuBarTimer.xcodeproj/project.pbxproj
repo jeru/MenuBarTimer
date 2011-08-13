@@ -18,6 +18,7 @@
 		C747679013F632F2001A3359 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C747678E13F632F2001A3359 /* InfoPlist.strings */; };
 		C747679213F632F2001A3359 /* MenuBarTimerTests.h in Resources */ = {isa = PBXBuildFile; fileRef = C747679113F632F2001A3359 /* MenuBarTimerTests.h */; };
 		C747679413F632F2001A3359 /* MenuBarTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C747679313F632F2001A3359 /* MenuBarTimerTests.m */; };
+		C7AD5F4F13F6767800DEFC81 /* MyStatusMenuDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AD5F4E13F6767800DEFC81 /* MyStatusMenuDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,8 @@
 		C747678F13F632F2001A3359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C747679113F632F2001A3359 /* MenuBarTimerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuBarTimerTests.h; sourceTree = "<group>"; };
 		C747679313F632F2001A3359 /* MenuBarTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuBarTimerTests.m; sourceTree = "<group>"; };
+		C7AD5F4D13F6767800DEFC81 /* MyStatusMenuDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStatusMenuDelegate.h; sourceTree = "<group>"; };
+		C7AD5F4E13F6767800DEFC81 /* MyStatusMenuDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyStatusMenuDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,8 @@
 				C747677B13F632F2001A3359 /* MenuBarTimerAppDelegate.m */,
 				C747677D13F632F2001A3359 /* MainMenu.xib */,
 				C747676F13F632F2001A3359 /* Supporting Files */,
+				C7AD5F4D13F6767800DEFC81 /* MyStatusMenuDelegate.h */,
+				C7AD5F4E13F6767800DEFC81 /* MyStatusMenuDelegate.m */,
 			);
 			path = MenuBarTimer;
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 			files = (
 				C747677513F632F2001A3359 /* main.m in Sources */,
 				C747677C13F632F2001A3359 /* MenuBarTimerAppDelegate.m in Sources */,
+				C7AD5F4F13F6767800DEFC81 /* MyStatusMenuDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +441,7 @@
 				C747679913F632F2001A3359 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C747679A13F632F2001A3359 /* Build configuration list for PBXNativeTarget "MenuBarTimerTests" */ = {
 			isa = XCConfigurationList;
@@ -443,6 +450,7 @@
 				C747679C13F632F2001A3359 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

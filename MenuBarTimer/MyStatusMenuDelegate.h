@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MyStatusMenuDelegate : NSObject
+@interface MyStatusMenuDelegate : NSObject <NSMenuDelegate> {
+    IBOutlet NSTextField *durationInput;
+    IBOutlet NSMenu *statusMenu;
+    
+    NSTimer* focusingTimer;
+}
+
+- (void)menuWillOpen:(NSMenu *)menu;
+- (void)menuNeedsUpdate:(NSMenu *)menu;
+
+- (void)focusingTimerFire:(NSTimer*)theTimer;
 
 @end
