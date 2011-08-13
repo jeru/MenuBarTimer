@@ -1,0 +1,450 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C747676913F632F2001A3359 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747676813F632F2001A3359 /* Cocoa.framework */; };
+		C747677313F632F2001A3359 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C747677113F632F2001A3359 /* InfoPlist.strings */; };
+		C747677513F632F2001A3359 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C747677413F632F2001A3359 /* main.m */; };
+		C747677913F632F2001A3359 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C747677713F632F2001A3359 /* Credits.rtf */; };
+		C747677C13F632F2001A3359 /* MenuBarTimerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C747677B13F632F2001A3359 /* MenuBarTimerAppDelegate.m */; };
+		C747677F13F632F2001A3359 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C747677D13F632F2001A3359 /* MainMenu.xib */; };
+		C747678713F632F2001A3359 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747678613F632F2001A3359 /* SenTestingKit.framework */; };
+		C747678813F632F2001A3359 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747676813F632F2001A3359 /* Cocoa.framework */; };
+		C747679013F632F2001A3359 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C747678E13F632F2001A3359 /* InfoPlist.strings */; };
+		C747679213F632F2001A3359 /* MenuBarTimerTests.h in Resources */ = {isa = PBXBuildFile; fileRef = C747679113F632F2001A3359 /* MenuBarTimerTests.h */; };
+		C747679413F632F2001A3359 /* MenuBarTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C747679313F632F2001A3359 /* MenuBarTimerTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C747678913F632F2001A3359 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C747675B13F632F2001A3359 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C747676313F632F2001A3359;
+			remoteInfo = MenuBarTimer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C747676413F632F2001A3359 /* MenuBarTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuBarTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C747676813F632F2001A3359 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		C747676B13F632F2001A3359 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		C747676C13F632F2001A3359 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C747676D13F632F2001A3359 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C747677013F632F2001A3359 /* MenuBarTimer-Info.plist */ = {isa = PBXFileReference; path = "MenuBarTimer-Info.plist"; sourceTree = "<group>"; };
+		C747677213F632F2001A3359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C747677413F632F2001A3359 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C747677613F632F2001A3359 /* MenuBarTimer-Prefix.pch */ = {isa = PBXFileReference; path = "MenuBarTimer-Prefix.pch"; sourceTree = "<group>"; };
+		C747677813F632F2001A3359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		C747677A13F632F2001A3359 /* MenuBarTimerAppDelegate.h */ = {isa = PBXFileReference; path = MenuBarTimerAppDelegate.h; sourceTree = "<group>"; };
+		C747677B13F632F2001A3359 /* MenuBarTimerAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuBarTimerAppDelegate.m; sourceTree = "<group>"; };
+		C747677E13F632F2001A3359 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		C747678513F632F2001A3359 /* MenuBarTimerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MenuBarTimerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C747678613F632F2001A3359 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		C747678D13F632F2001A3359 /* MenuBarTimerTests-Info.plist */ = {isa = PBXFileReference; path = "MenuBarTimerTests-Info.plist"; sourceTree = "<group>"; };
+		C747678F13F632F2001A3359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C747679113F632F2001A3359 /* MenuBarTimerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuBarTimerTests.h; sourceTree = "<group>"; };
+		C747679313F632F2001A3359 /* MenuBarTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuBarTimerTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C747676113F632F2001A3359 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C747676913F632F2001A3359 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C747678113F632F2001A3359 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C747678713F632F2001A3359 /* SenTestingKit.framework in Frameworks */,
+				C747678813F632F2001A3359 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C747675913F632F2001A3359 = {
+			isa = PBXGroup;
+			children = (
+				C747676E13F632F2001A3359 /* MenuBarTimer */,
+				C747678B13F632F2001A3359 /* MenuBarTimerTests */,
+				C747676713F632F2001A3359 /* Frameworks */,
+				C747676513F632F2001A3359 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C747676513F632F2001A3359 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C747676413F632F2001A3359 /* MenuBarTimer.app */,
+				C747678513F632F2001A3359 /* MenuBarTimerTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C747676713F632F2001A3359 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C747676813F632F2001A3359 /* Cocoa.framework */,
+				C747678613F632F2001A3359 /* SenTestingKit.framework */,
+				C747676A13F632F2001A3359 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C747676A13F632F2001A3359 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C747676B13F632F2001A3359 /* AppKit.framework */,
+				C747676C13F632F2001A3359 /* CoreData.framework */,
+				C747676D13F632F2001A3359 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		C747676E13F632F2001A3359 /* MenuBarTimer */ = {
+			isa = PBXGroup;
+			children = (
+				C747677A13F632F2001A3359 /* MenuBarTimerAppDelegate.h */,
+				C747677B13F632F2001A3359 /* MenuBarTimerAppDelegate.m */,
+				C747677D13F632F2001A3359 /* MainMenu.xib */,
+				C747676F13F632F2001A3359 /* Supporting Files */,
+			);
+			path = MenuBarTimer;
+			sourceTree = "<group>";
+		};
+		C747676F13F632F2001A3359 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C747677013F632F2001A3359 /* MenuBarTimer-Info.plist */,
+				C747677113F632F2001A3359 /* InfoPlist.strings */,
+				C747677413F632F2001A3359 /* main.m */,
+				C747677613F632F2001A3359 /* MenuBarTimer-Prefix.pch */,
+				C747677713F632F2001A3359 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C747678B13F632F2001A3359 /* MenuBarTimerTests */ = {
+			isa = PBXGroup;
+			children = (
+				C747679113F632F2001A3359 /* MenuBarTimerTests.h */,
+				C747679313F632F2001A3359 /* MenuBarTimerTests.m */,
+				C747678C13F632F2001A3359 /* Supporting Files */,
+			);
+			path = MenuBarTimerTests;
+			sourceTree = "<group>";
+		};
+		C747678C13F632F2001A3359 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C747678D13F632F2001A3359 /* MenuBarTimerTests-Info.plist */,
+				C747678E13F632F2001A3359 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C747676313F632F2001A3359 /* MenuBarTimer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C747679713F632F2001A3359 /* Build configuration list for PBXNativeTarget "MenuBarTimer" */;
+			buildPhases = (
+				C747676013F632F2001A3359 /* Sources */,
+				C747676113F632F2001A3359 /* Frameworks */,
+				C747676213F632F2001A3359 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MenuBarTimer;
+			productName = MenuBarTimer;
+			productReference = C747676413F632F2001A3359 /* MenuBarTimer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C747678413F632F2001A3359 /* MenuBarTimerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C747679A13F632F2001A3359 /* Build configuration list for PBXNativeTarget "MenuBarTimerTests" */;
+			buildPhases = (
+				C747678013F632F2001A3359 /* Sources */,
+				C747678113F632F2001A3359 /* Frameworks */,
+				C747678213F632F2001A3359 /* Resources */,
+				C747678313F632F2001A3359 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C747678A13F632F2001A3359 /* PBXTargetDependency */,
+			);
+			name = MenuBarTimerTests;
+			productName = MenuBarTimerTests;
+			productReference = C747678513F632F2001A3359 /* MenuBarTimerTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C747675B13F632F2001A3359 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "The Chinese University of Hong Kong";
+			};
+			buildConfigurationList = C747675E13F632F2001A3359 /* Build configuration list for PBXProject "MenuBarTimer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C747675913F632F2001A3359;
+			productRefGroup = C747676513F632F2001A3359 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C747676313F632F2001A3359 /* MenuBarTimer */,
+				C747678413F632F2001A3359 /* MenuBarTimerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C747676213F632F2001A3359 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C747677313F632F2001A3359 /* InfoPlist.strings in Resources */,
+				C747677913F632F2001A3359 /* Credits.rtf in Resources */,
+				C747677F13F632F2001A3359 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C747678213F632F2001A3359 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C747679013F632F2001A3359 /* InfoPlist.strings in Resources */,
+				C747679213F632F2001A3359 /* MenuBarTimerTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C747678313F632F2001A3359 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C747676013F632F2001A3359 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C747677513F632F2001A3359 /* main.m in Sources */,
+				C747677C13F632F2001A3359 /* MenuBarTimerAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C747678013F632F2001A3359 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C747679413F632F2001A3359 /* MenuBarTimerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C747678A13F632F2001A3359 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C747676313F632F2001A3359 /* MenuBarTimer */;
+			targetProxy = C747678913F632F2001A3359 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C747677113F632F2001A3359 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C747677213F632F2001A3359 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C747677713F632F2001A3359 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C747677813F632F2001A3359 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		C747677D13F632F2001A3359 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C747677E13F632F2001A3359 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		C747678E13F632F2001A3359 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C747678F13F632F2001A3359 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C747679513F632F2001A3359 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C747679613F632F2001A3359 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C747679813F632F2001A3359 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MenuBarTimer/MenuBarTimer-Prefix.pch";
+				INFOPLIST_FILE = "MenuBarTimer/MenuBarTimer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C747679913F632F2001A3359 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MenuBarTimer/MenuBarTimer-Prefix.pch";
+				INFOPLIST_FILE = "MenuBarTimer/MenuBarTimer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C747679B13F632F2001A3359 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MenuBarTimer.app/Contents/MacOS/MenuBarTimer";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MenuBarTimer/MenuBarTimer-Prefix.pch";
+				INFOPLIST_FILE = "MenuBarTimerTests/MenuBarTimerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		C747679C13F632F2001A3359 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MenuBarTimer.app/Contents/MacOS/MenuBarTimer";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MenuBarTimer/MenuBarTimer-Prefix.pch";
+				INFOPLIST_FILE = "MenuBarTimerTests/MenuBarTimerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C747675E13F632F2001A3359 /* Build configuration list for PBXProject "MenuBarTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C747679513F632F2001A3359 /* Debug */,
+				C747679613F632F2001A3359 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C747679713F632F2001A3359 /* Build configuration list for PBXNativeTarget "MenuBarTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C747679813F632F2001A3359 /* Debug */,
+				C747679913F632F2001A3359 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C747679A13F632F2001A3359 /* Build configuration list for PBXNativeTarget "MenuBarTimerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C747679B13F632F2001A3359 /* Debug */,
+				C747679C13F632F2001A3359 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C747675B13F632F2001A3359 /* Project object */;
+}
