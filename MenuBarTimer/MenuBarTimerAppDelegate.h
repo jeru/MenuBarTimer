@@ -3,15 +3,15 @@
 //  MenuBarTimer
 //
 //  Created by Cheng Sheng on 13/8/11.
-//  Copyright 2011 The Chinese University of Hong Kong. All rights reserved.
+//  Copyright 2011 Cheng Sheng. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 
 @interface MenuBarTimerAppDelegate : NSObject <NSApplicationDelegate> {
-    NSWindow *window;
+    IBOutlet NSMenu *statusMenu;
+    NSStatusItem *statusItem;
 }
-
-@property (assign) IBOutlet NSWindow *window;
+- (IBAction)exitApp:(id)sender;
 
 @end
