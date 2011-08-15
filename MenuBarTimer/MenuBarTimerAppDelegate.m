@@ -7,6 +7,7 @@
 //
 
 #import "MenuBarTimerAppDelegate.h"
+#import "MBTStatusItemView.h"
 #import "MBTUtils.h"
 
 /////////////////////////////
@@ -114,11 +115,27 @@ static void AutomatonPanic(NSString* msg) {
     // Insert code here to initialize your application
 }
 
+- (BOOL)aaaH:(id)sender {
+    return NO;
+}
+- (BOOL)aaaUh:(id)sender {
+    return YES;
+}
 - (void)awakeFromNib {
+#define TOG 1
+#if TOG
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     [statusItem setHighlightMode:YES];
     [statusItem setAction:@selector(openStatusItem:)];
     [self setUpForStateIdle];
+#else
+    MBTStatusItemView *view = [MBTStatusItemView new];
+    [view setTarget:self];
+    [view setHighlight:YES];
+    [view setTitle:@"Abcde"];
+    [view setActionOnHighlight:@selector(aaaH:)];
+    [view setActionOnUnhighlight:@selector(aaaUh:)];
+#endif
 }
 
 - (IBAction)openStatusItem:(id)sender {
