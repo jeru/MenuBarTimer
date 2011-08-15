@@ -70,7 +70,7 @@
              || (_state == MBTStatusItemViewStateBlinking
                  && _blinkMode));
     CGFloat padding_height = ([[_statusItem statusBar] thickness]
-                              - _titleRect.size.height) / 2;
+                              - _titleRect.size.height + 1) / 2;
     NSColor *fontColor = realHighlight ? [NSColor whiteColor]
                                        : [NSColor blackColor];
     [_statusItem drawStatusBarBackgroundInRect:[self bounds]

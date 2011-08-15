@@ -125,6 +125,9 @@ static void AutomatonPanic(NSString* msg) {
         }
     } else if (state == MBTS_TIMING || state == MBTS_PAUSED) {
         [statusView popUpMenu:menuForStateTimingOrPaused];
+    } else if (state == MBTS_FINISHED) {
+        [statusView setState:MBTStatusItemViewStateNormal];
+        [self setUpForStateIdle];
     }
 }
 
@@ -191,7 +194,7 @@ static void AutomatonPanic(NSString* msg) {
         int intSeconds = (int)floor(seconds + 0.5);
         if (intSeconds >= 15 * 60)
             intSeconds /= 60;
-        NSString *text = [NSString stringWithFormat:@"%d:%.2d", intSeconds / 60, intSeconds % 60];
+        NSString *text = [NSString stringWithFormat:@"%.2d:%.2d", intSeconds / 60, intSeconds % 60];
         [statusView setTitle:text];
     }
 }
@@ -250,7 +253,9 @@ static void AutomatonPanic(NSString* msg) {
 }
 
 - (void)setUpForStateFinished {
-    [self setUpForStateIdle];
+    state = MBTS_FINISHED;
+    [statusView setTitle:@"00:00"];
+    [statusView setState:MBTStatusItemViewStateBlinking];
 }
 
 @end
