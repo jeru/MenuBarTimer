@@ -9,6 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface MBTUtils : NSObject
-+ (NSRect) getStatusItemFrame:(NSStatusItem*)statusItem;
 + (NSPoint) determinePopUpPosition:(NSSize)size statusItem:(NSRect)statusItem;
 @end

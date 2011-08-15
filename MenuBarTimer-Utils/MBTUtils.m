@@ -9,15 +9,6 @@
 #import "MBTUtils.h"
 #import <AppKit/AppKit.h>
 
-@interface NSStatusItem (Hack)
-- (NSWindow*)windowHack;
-@end
-@implementation NSStatusItem (Hack)
-- (NSWindow*)windowHack {
-    return [self valueForKeyPath:@"_fWindow"];
-}
-@end
-
 @implementation MBTUtils
 
 - (id)init
@@ -28,10 +19,6 @@
     }
     
     return self;
-}
-
-+ (NSRect) getStatusItemFrame:(NSStatusItem*)statusItem {
-    return [[statusItem windowHack] frame];
 }
 
 + (NSPoint) determinePopUpPosition:(NSSize)size statusItem:(NSRect)statusItem {

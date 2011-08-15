@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MenuForIdleDelegate.h"
+#import "MBTStatusItemView.h"
 
 enum MenuBarTimerState {
     MBTS_IDLE,
@@ -25,13 +26,14 @@ enum MenuBarTimerState {
     IBOutlet NSTextField *durationInput;
     IBOutlet NSView *durationInputView;
     IBOutlet NSPanel *windowForInput;
-    NSStatusItem *statusItem;
     
     enum MenuBarTimerState state;
     NSMenuItem *clickPauseOrContinue;
+    MBTStatusItemView *statusView;
 }
 
-- (IBAction)openStatusItem:(id)sender;
+- (void)clickStatusItem:(id)sender;
+
 - (IBAction)clickGo:(id)sender;
 - (IBAction)clickCancel:(id)sender;
 - (IBAction)clickPauseOrContinue:(id)sender;

@@ -45,4 +45,9 @@ enum MBTStatusItemViewState {
 - (void)setActionOnBlinking:(SEL)aSelector;
 - (SEL)actionOnBlinking;
 
+- (NSRect)statusItemFrame;
+
+- (void)popUpMenu:(NSMenu*)theMenu;
+- (void)popUpPanel:(NSPanel*)thePanel;
+
 @end

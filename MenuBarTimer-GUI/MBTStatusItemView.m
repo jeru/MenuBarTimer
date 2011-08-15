@@ -7,7 +7,27 @@
 //
 
 #import "MBTStatusItemView.h"
+#import "MBTUtils.h"
 
+// Hack to obtain position. Fuck Apple!
+@interface NSStatusItem (Hack)
+- (NSWindow*)windowHack;
+@end
+@implementation NSStatusItem (Hack)
+- (NSWindow*)windowHack {
+    return [self valueForKeyPath:@"_fWindow"];
+}
+@end
+
+///////////////////////
+// MBTStatusItemView //
+///////////////////////
+@interface MBTStatusItemView () {
+@private
+    NSPanel *_poppedPanel;
+    NSMenu *_poppedMenu;
+}
+@end
 @implementation MBTStatusItemView
 
 #define PADDING_WIDTH 6
@@ -30,6 +50,9 @@
         _actionOnHighlighted = nil;
         _actionOnBlinking = nil;
         _blinkTimer = nil;
+        
+        _poppedPanel = nil;
+        _poppedMenu = nil;
     }
     
     return self;
@@ -164,6 +187,66 @@
 
 - (enum MBTStatusItemViewState)state {
     return _state;
+}
+
+- (NSRect)statusItemFrame {
+    return [[_statusItem windowHack] frame];
+}
+
+- (void)clearPopped {
+    if (_poppedMenu) {
+        [[NSNotificationCenter defaultCenter]
+         removeObserver:self
+         name:@"NSMenuDidEndTrackingNotification"
+         object:_poppedMenu];
+        [_poppedMenu cancelTracking];
+        _poppedMenu = nil;
+    }
+    if (_poppedPanel) {
+        [[NSNotificationCenter defaultCenter]
+         removeObserver:self
+         name:@"NSWindowDidResignKeyNotification"
+         object:_poppedPanel];
+        [_poppedPanel orderOut:self];
+        _poppedPanel = nil;
+    }
+}
+
+- (void)cancelPopped:(NSNotification*)notif {
+    [self setState:MBTStatusItemViewStateNormal];
+    [self clearPopped];
+}
+
+- (void)popUpMenu:(NSMenu*)theMenu {
+    [self setState:MBTStatusItemViewStateHighlighted];
+    [theMenu cancelTracking];
+    [self clearPopped];
+    _poppedMenu = theMenu;
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(cancelPopped:)
+     name:@"NSMenuDidEndTrackingNotification"
+     object:_poppedMenu];
+    [_statusItem popUpStatusItemMenu:_poppedMenu];
+}
+
+- (void)popUpPanel:(NSPanel *)thePanel {
+    [self setState:MBTStatusItemViewStateHighlighted];
+    [self clearPopped];
+    [thePanel orderOut:self];
+    _poppedPanel = thePanel;
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(cancelPopped:)
+     name:@"NSWindowDidResignKeyNotification"
+     object:_poppedPanel];
+    NSRect r = [self statusItemFrame];
+    NSPoint p = [MBTUtils
+                 determinePopUpPosition:[thePanel frame].size
+                 statusItem:r];
+    [_poppedPanel setFrameOrigin:p];
+    [_poppedPanel setMovable:NO];
+    [_poppedPanel makeKeyAndOrderFront:self];
 }
 
 @end

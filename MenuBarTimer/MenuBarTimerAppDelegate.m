@@ -115,44 +115,27 @@ static void AutomatonPanic(NSString* msg) {
     // Insert code here to initialize your application
 }
 
-- (BOOL)aaaH:(id)sender {
-    return NO;
-}
-- (BOOL)aaaUh:(id)sender {
-    return YES;
-}
-- (void)awakeFromNib {
-#define TOG 0
-#if TOG
-    statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-    [statusItem setHighlightMode:YES];
-    [statusItem setAction:@selector(openStatusItem:)];
-    [self setUpForStateIdle];
-#else
-    MBTStatusItemView *view = [MBTStatusItemView new];
-    [view setTarget:self];
-    [view setState:MBTStatusItemViewStateBlinking];
-    [view setTitle:@"Abcde"];
-#endif
-}
-
-- (IBAction)openStatusItem:(id)sender {
+- (void)clickStatusItem:(id)sender {
     if (state == MBTS_IDLE) {
         if ([windowForInput isVisible]) {
-            [self clickCancel:sender];
+            [windowForInput orderOut:sender];
         } else {
-            NSRect r = [MBTUtils getStatusItemFrame:statusItem];
-            NSPoint p = [MBTUtils determinePopUpPosition:[windowForInput frame].size
-                                              statusItem:r];
-            [windowForInput setFrameOrigin:p];
-            [windowForInput setMovable:NO];
-            [windowForInput makeKeyAndOrderFront:sender];
+            [statusView popUpPanel:windowForInput];
             [durationInput selectText:self];
         }
     } else if (state == MBTS_TIMING || state == MBTS_PAUSED) {
-        [statusItem popUpStatusItemMenu:menuForStateTimingOrPaused];
+        [statusView popUpMenu:menuForStateTimingOrPaused];
     }
 }
+
+- (void)awakeFromNib {
+    statusView = [MBTStatusItemView new];
+    [statusView setTarget:self];
+    [statusView setActionOnNormal:@selector(clickStatusItem:)];
+    [statusView setActionOnHighlighted:@selector(clickStatusItem:)];
+    [statusView setActionOnBlinking:@selector(clickStatusItem:)];
+    [self setUpForStateIdle];
+}     
 
 // TODO: Currently, the text field is cleared to avoid errors again (eg., when you close the menu).
 //       Find a better way to distinguish the "Action" of text field when an Enter is typed and when
@@ -207,19 +190,19 @@ static void AutomatonPanic(NSString* msg) {
 
 - (void)renderSeconds:(double)seconds {
     if (seconds <= 0.5) {
-        [statusItem setTitle:@"00:00"];
+        [statusView setTitle:@"00:00"];
     } else {
         int intSeconds = (int)floor(seconds + 0.5);
         if (intSeconds >= 15 * 60)
             intSeconds /= 60;
         NSString *text = [NSString stringWithFormat:@"%d:%.2d", intSeconds / 60, intSeconds % 60];
-        [statusItem setTitle:text];
+        [statusView setTitle:text];
     }
 }
 
 - (void)setUpForStateIdle {
     state = MBTS_INVALID;
-    [statusItem setTitle:@"Timer"];
+    [statusView setTitle:@"Timer"];
     state = MBTS_IDLE;
 }
 
