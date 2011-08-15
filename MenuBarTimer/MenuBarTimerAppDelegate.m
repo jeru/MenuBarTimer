@@ -137,9 +137,6 @@ static void AutomatonPanic(NSString* msg) {
     [self setUpForStateIdle];
 }     
 
-// TODO: Currently, the text field is cleared to avoid errors again (eg., when you close the menu).
-//       Find a better way to distinguish the "Action" of text field when an Enter is typed and when
-//       the menu is closed.
 - (IBAction)clickGo:(id)sender {
     if (state != MBTS_IDLE) AutomatonPanic(@"Expect state = MBTS_IDLE");
     NSString *text = [durationInput stringValue];
@@ -151,7 +148,6 @@ static void AutomatonPanic(NSString* msg) {
                              alternateButton:nil
                              otherButton:nil
                              informativeTextWithFormat:@"Don't know what the time string means: %s.", text];
-        [durationInput setStringValue:@""];
         [theAlert runModal];
     } else {
         [windowForInput orderOut:sender];
