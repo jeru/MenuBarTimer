@@ -24,12 +24,11 @@
         _title = nil;
         [self setTitle:@""];
         
-        _highlight = NO;
+        _state = MBTStatusItemViewStateNormal;
         _target = nil;
-        _actionOnHighlight = nil;
-        _actionOnUnhighlight = nil;
-        
-        _blinking = NO;
+        _actionOnNormal = nil;
+        _actionOnHighlighted = nil;
+        _actionOnBlinking = nil;
         _blinkTimer = nil;
     }
     
@@ -43,7 +42,10 @@
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
-    BOOL realHighlight = _blinking ? _blinkMode : _highlight;
+    BOOL realHighlight = 
+            (_state == MBTStatusItemViewStateHighlighted
+             || (_state == MBTStatusItemViewStateBlinking
+                 && _blinkMode));
     CGFloat padding_height = ([[_statusItem statusBar] thickness]
                               - _titleRect.size.height) / 2;
     NSColor *fontColor = realHighlight ? [NSColor whiteColor]
@@ -62,20 +64,20 @@
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
-    if (_highlight) {
-        if ([_target respondsToSelector:_actionOnHighlight]) {
-            BOOL ret = [_target performSelector:_actionOnHighlight
-                                     withObject:self];
-            [self setHighlight:ret];
-        }
-    } else {
-        if ([_target respondsToSelector:_actionOnUnhighlight]) {
-            [self setHighlight:YES];
-            BOOL ret = [_target performSelector:_actionOnUnhighlight
-                                     withObject:self];
-            [self setHighlight:ret];
-        }
+    SEL action = nil;
+    switch (_state) {
+        case MBTStatusItemViewStateNormal:
+            action = _actionOnNormal;
+            break;
+        case MBTStatusItemViewStateHighlighted:
+            action = _actionOnHighlighted;
+            break;
+        case MBTStatusItemViewStateBlinking:
+            action = _actionOnBlinking;
+            break;
     }
+    if ([_target respondsToSelector:action])
+        [_target performSelector:action withObject:self];
 }
 
 - (void)rightMouseDown:(NSEvent *)theEvent {
@@ -101,17 +103,6 @@
     return _title;
 }
 
-- (void)setHighlight:(BOOL)aVal {
-    if (aVal != _highlight) {
-        _highlight = aVal;
-        [self setNeedsDisplay:YES];
-    }
-}
-
-- (BOOL)highlight {
-    return _highlight;
-}
-
 - (void)setTarget:(id)theTarget {
     _target = theTarget;
 }
@@ -120,20 +111,28 @@
     return _target;
 }
 
-- (void)setActionOnHighlight:(SEL)aSelector {
-    _actionOnHighlight = aSelector;
+- (void)setActionOnNormal:(SEL)aSelector {
+    _actionOnNormal = aSelector;
 }
 
-- (SEL)actionOnHighlight {
-    return _actionOnHighlight;
+- (SEL)actionOnNormal {
+    return _actionOnNormal;
 }
 
-- (void)setActionOnUnhighlight:(SEL)aSelector {
-    _actionOnUnhighlight = aSelector;
+- (void)setActionOnHighlighted:(SEL)aSelector {
+    _actionOnHighlighted = aSelector;
 }
 
-- (SEL)actionOnUnhighlight {
-    return _actionOnUnhighlight;
+- (SEL)actionOnHighlighted {
+    return _actionOnHighlighted;
+}
+
+- (void)setActionOnBlinking:(SEL)aSelector {
+    _actionOnBlinking = aSelector;
+}
+
+- (SEL)actionOnBlinking {
+    return _actionOnBlinking;
 }
 
 - (void)blinkTimerFired:(NSTimer*)timer {
@@ -141,10 +140,14 @@
     [self setNeedsDisplay:YES];
 }
 
-- (void)setBlinking:(BOOL)aVal {
-    if (aVal != _blinking) return;
-    if (aVal) {
-        _blinking = YES;
+- (void)setState:(enum MBTStatusItemViewState)theState {
+    if (theState == _state) return;
+    if (_state == MBTStatusItemViewStateBlinking) {
+        [_blinkTimer invalidate];
+        _blinkTimer = nil;
+    }
+    _state = theState;
+    if (_state == MBTStatusItemViewStateBlinking) {
         _blinkMode = YES;
         _blinkTimer = [NSTimer
                        timerWithTimeInterval:BLINK_PERIOD
@@ -155,17 +158,12 @@
         [[NSRunLoop currentRunLoop]
          addTimer:_blinkTimer
          forMode:NSRunLoopCommonModes];
-    } else {
-        [_blinkTimer invalidate];
-        _blinkTimer = nil;
-        _blinkMode = NO;
-        _blinking = NO;
     }
     [self setNeedsDisplay:YES];
 }
 
-- (BOOL)blinking {
-    return _blinking;
+- (enum MBTStatusItemViewState)state {
+    return _state;
 }
 
 @end

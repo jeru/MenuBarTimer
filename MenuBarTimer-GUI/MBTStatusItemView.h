@@ -8,37 +8,41 @@
 
 #import <Cocoa/Cocoa.h>
 
+enum MBTStatusItemViewState {
+    MBTStatusItemViewStateNormal,
+    MBTStatusItemViewStateHighlighted,
+    MBTStatusItemViewStateBlinking
+};
+
 @interface MBTStatusItemView : NSView {
     NSStatusItem *_statusItem;
 
     NSString *_title;
     NSRect _titleRect;
-
-    BOOL _highlight;
+    
+    enum MBTStatusItemViewState _state;
+    BOOL _blinkMode;
+    NSTimer *_blinkTimer;
     
     id _target;
-    SEL _actionOnHighlight;
-    SEL _actionOnUnhighlight;
-    
-    BOOL _blinking;
-    NSTimer *_blinkTimer;
-    BOOL _blinkMode;
+    SEL _actionOnNormal;
+    SEL _actionOnHighlighted;
+    SEL _actionOnBlinking;
 }
 
 - (void)setTitle:(NSString*)aTitle;
 - (NSString*)title;
 
-- (void)setHighlight:(BOOL)aVal;
-- (BOOL)highlight;
+- (void)setState:(enum MBTStatusItemViewState)theState;
+- (enum MBTStatusItemViewState)state;
 
 - (void)setTarget:(id)theTarget;
 - (id)target;
-- (void)setActionOnHighlight:(SEL)aSelector;
-- (SEL)actionOnHighlight;
-- (SEL)actionOnUnhighlight;
-- (void)setActionOnUnhighlight:(SEL)aSelector;
-
-- (void)setBlinking:(BOOL)aVal;
-- (BOOL)blinking;
+- (void)setActionOnNormal:(SEL)aSelector;
+- (SEL)actionOnNormal;
+- (void)setActionOnHighlighted:(SEL)aSelector;
+- (SEL)actionOnHighlighted;
+- (void)setActionOnBlinking:(SEL)aSelector;
+- (SEL)actionOnBlinking;
 
 @end

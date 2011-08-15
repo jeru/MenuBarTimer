@@ -122,7 +122,7 @@ static void AutomatonPanic(NSString* msg) {
     return YES;
 }
 - (void)awakeFromNib {
-#define TOG 1
+#define TOG 0
 #if TOG
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     [statusItem setHighlightMode:YES];
@@ -131,10 +131,8 @@ static void AutomatonPanic(NSString* msg) {
 #else
     MBTStatusItemView *view = [MBTStatusItemView new];
     [view setTarget:self];
-    [view setHighlight:YES];
+    [view setState:MBTStatusItemViewStateBlinking];
     [view setTitle:@"Abcde"];
-    [view setActionOnHighlight:@selector(aaaH:)];
-    [view setActionOnUnhighlight:@selector(aaaUh:)];
 #endif
 }
 
