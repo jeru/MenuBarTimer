@@ -7,6 +7,7 @@
 //
 
 #import "MenuBarTimerAppDelegate.h"
+#import "MBTUtils.h"
 
 /////////////////////////////
 // Some utility functions. //
@@ -116,11 +117,26 @@ static void AutomatonPanic(NSString* msg) {
 - (void)awakeFromNib {
     statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
     [statusItem setHighlightMode:YES];
+    [statusItem setAction:@selector(openStatusItem:)];
     [self setUpForStateIdle];
 }
 
 - (IBAction)openStatusItem:(id)sender {
-    NSLog(@"Hello\n");
+    if (state == MBTS_IDLE) {
+        if ([windowForInput isVisible]) {
+            [self clickCancel:sender];
+        } else {
+            NSRect r = [MBTUtils getStatusItemFrame:statusItem];
+            NSPoint p = [MBTUtils determinePopUpPosition:[windowForInput frame].size
+                                              statusItem:r];
+            [windowForInput setFrameOrigin:p];
+            [windowForInput setMovable:NO];
+            [windowForInput makeKeyAndOrderFront:sender];
+            [durationInput selectText:self];
+        }
+    } else if (state == MBTS_TIMING || state == MBTS_PAUSED) {
+        [statusItem popUpStatusItemMenu:menuForStateTimingOrPaused];
+    }
 }
 
 // TODO: Currently, the text field is cleared to avoid errors again (eg., when you close the menu).
@@ -140,9 +156,13 @@ static void AutomatonPanic(NSString* msg) {
         [durationInput setStringValue:@""];
         [theAlert runModal];
     } else {
-        [menuForStateIdle cancelTracking];
+        [windowForInput orderOut:sender];
         [self setUpForStateTiming:time];
     }
+}
+
+- (IBAction)clickCancel:(id)sender {
+    [windowForInput orderOut:sender];
 }
 
 - (IBAction)clickPauseOrContinue:(id)sender {
@@ -184,14 +204,12 @@ static void AutomatonPanic(NSString* msg) {
 
 - (void)setUpForStateIdle {
     state = MBTS_INVALID;
-    [statusItem setMenu:menuForStateIdle];
     [statusItem setTitle:@"Timer"];
     state = MBTS_IDLE;
 }
 
 - (void)setUpForStateTiming:(double)seconds {
     state = MBTS_INVALID;
-    [statusItem setMenu:menuForStateTimingOrPaused];
     [menuItemOfPauseOrContinue setTitle:@"Pause"];
     timingSeconds = seconds;
     [self renderSeconds:timingSeconds];

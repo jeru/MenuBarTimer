@@ -24,6 +24,9 @@
     if (commandSelector == @selector(insertNewline:)) {
         [goButton performClick:self];
         return YES;
+    } else if (commandSelector == @selector(cancelOperation:)) {
+        [cancelButton performClick:self];
+        return YES;
     }
     return NO;
 }

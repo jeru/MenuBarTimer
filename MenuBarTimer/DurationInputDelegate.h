@@ -10,6 +10,7 @@
 
 @interface DurationInputDelegate : NSObject <NSTextFieldDelegate> {
     IBOutlet NSButton *goButton;
+    IBOutlet NSButton *cancelButton;
 }
 
 - (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector;

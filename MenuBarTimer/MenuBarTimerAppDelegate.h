@@ -24,6 +24,7 @@ enum MenuBarTimerState {
     IBOutlet NSMenuItem *menuItemOfPauseOrContinue;
     IBOutlet NSTextField *durationInput;
     IBOutlet NSView *durationInputView;
+    IBOutlet NSPanel *windowForInput;
     NSStatusItem *statusItem;
     
     enum MenuBarTimerState state;
@@ -32,6 +33,7 @@ enum MenuBarTimerState {
 
 - (IBAction)openStatusItem:(id)sender;
 - (IBAction)clickGo:(id)sender;
+- (IBAction)clickCancel:(id)sender;
 - (IBAction)clickPauseOrContinue:(id)sender;
 - (IBAction)clickStop:(id)sender;
 
