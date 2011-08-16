@@ -42,6 +42,7 @@
         [_statusItem setView:self];
         // Initialization code here.
         _title = nil;
+        _attributedTitle = nil;
         [self setTitle:@""];
         
         _state = MBTStatusItemViewStateNormal;
@@ -60,6 +61,7 @@
 
 - (void)dealloc {
     [_title release];
+    [_attributedTitle release];
     [_statusItem release];
     [super dealloc];
 }
@@ -75,11 +77,32 @@
                                        : [NSColor blackColor];
     [_statusItem drawStatusBarBackgroundInRect:[self bounds]
                                  withHighlight:realHighlight];
-    [_title drawAtPoint:NSMakePoint(PADDING_WIDTH, padding_height)
-         withAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                         [NSFont menuBarFontOfSize:0], NSFontAttributeName,
-                         fontColor, NSForegroundColorAttributeName,
-                         nil]];
+    BOOL titleIsColored = NO;
+    {
+        NSRange r;
+        for (NSUInteger i = 0; i < [_attributedTitle length];) {
+            if ([[_attributedTitle attributesAtIndex:0
+                                      effectiveRange:&r]
+                 objectForKey:NSForegroundColorAttributeName] != nil)
+            {
+                titleIsColored = YES;
+                break;
+            }
+            i = r.location + r.length;
+        }
+    }
+    if (titleIsColored) {
+        [_attributedTitle
+         drawAtPoint:NSMakePoint(PADDING_WIDTH, padding_height)];
+    } else {
+        NSMutableAttributedString *s = [NSMutableAttributedString new];
+        [s initWithAttributedString:_attributedTitle];
+        [s addAttribute:NSForegroundColorAttributeName
+                  value:fontColor
+                  range:NSMakeRange(0, [_attributedTitle length])];
+        [s drawAtPoint:NSMakePoint(PADDING_WIDTH, padding_height)];
+        [s release];
+    }
 }
 
 - (BOOL)acceptsFirstResponder {
@@ -108,22 +131,36 @@
 }
 
 - (void)setTitle:(NSString *)aTitle {
-    if (![aTitle isEqualToString:_title]) {
-        if (_title != nil) [self.title release];
-        _title = [aTitle retain];
-        _titleRect = [_title
-                      boundingRectWithSize:NSMakeSize(INFINITY, INFINITY)
-                      options:0
-                      attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                  [NSFont menuBarFontOfSize:0], NSFontAttributeName,
-                                  nil]];
-        [_statusItem setLength:_titleRect.size.width + PADDING_WIDTH * 2];
-        [self setNeedsDisplay:YES];
-    }
+    NSAttributedString *s =
+            [[NSAttributedString new]
+             initWithString:aTitle
+             attributes:[NSDictionary
+                         dictionaryWithObjectsAndKeys:
+                         [NSFont menuBarFontOfSize:0], NSFontAttributeName,
+                         nil]];
+    [self setAttributedTitle:s];
+    [s release];
 }
 
 - (NSString*)title {
     return _title;
+}
+
+- (void)setAttributedTitle:(NSAttributedString *)aTitle {
+    if ([aTitle isEqualToAttributedString:_attributedTitle]) return;
+    if (_title != nil) [_title release];
+    if (_attributedTitle != nil) [_attributedTitle release];
+    _attributedTitle = [aTitle retain];
+    _title = [_attributedTitle string];
+    _titleRect = [_attributedTitle
+                  boundingRectWithSize:NSMakeSize(INFINITY, INFINITY)
+                  options:0];
+    [_statusItem setLength:_titleRect.size.width + PADDING_WIDTH * 2];
+    [self setNeedsLayout:YES];
+}
+
+- (NSAttributedString*)attributedTitle {
+    return _attributedTitle;
 }
 
 - (void)setTarget:(id)theTarget {

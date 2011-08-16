@@ -45,9 +45,11 @@ enum MBTStatusItemViewState {
  * the current @link state @/link.
  */
 @interface MBTStatusItemView : NSView {
+@private
     NSStatusItem *_statusItem;
 
     NSString *_title;
+    NSAttributedString *_attributedTitle;
     NSRect _titleRect;
     
     enum MBTStatusItemViewState _state;
@@ -63,6 +65,10 @@ enum MBTStatusItemViewState {
 /*! @property title */
 - (void)setTitle:(NSString*)aTitle;
 - (NSString*)title;
+
+/*! @property attributedTitle */
+- (void)setAttributedTitle:(NSAttributedString*)aTitle;
+- (NSAttributedString*)attributedTitle;
 
 /*! @property state */
 - (void)setState:(enum MBTStatusItemViewState)theState;
