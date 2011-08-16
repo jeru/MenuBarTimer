@@ -26,6 +26,8 @@
 @private
     NSPanel *_poppedPanel;
     NSMenu *_poppedMenu;
+    
+    NSAttributedString *_tmpAttributedTitle;
 }
 @end
 @implementation MBTStatusItemView
@@ -54,6 +56,8 @@
         
         _poppedPanel = nil;
         _poppedMenu = nil;
+        
+        _tmpAttributedTitle = nil;
     }
     
     return self;
@@ -63,6 +67,7 @@
     [_title release];
     [_attributedTitle release];
     [_statusItem release];
+    if (_tmpAttributedTitle) [_tmpAttributedTitle release];
     [super dealloc];
 }
 
@@ -83,7 +88,7 @@
         for (NSUInteger i = 0; i < [_attributedTitle length];) {
             if ([[_attributedTitle attributesAtIndex:0
                                       effectiveRange:&r]
-                 objectForKey:NSForegroundColorAttributeName] != nil)
+                 objectForKey:NSForegroundColorAttributeName])
             {
                 titleIsColored = YES;
                 break;
@@ -91,17 +96,20 @@
             i = r.location + r.length;
         }
     }
-    if (titleIsColored) {
+    // Try this coloring method: if highlighted, white; otherwise,
+    // the original color(s).
+    if (!realHighlight) {
         [_attributedTitle
          drawAtPoint:NSMakePoint(PADDING_WIDTH, padding_height)];
     } else {
         NSMutableAttributedString *s = [NSMutableAttributedString new];
+        if (_tmpAttributedTitle) [_tmpAttributedTitle release];
+        _tmpAttributedTitle = s;
         [s initWithAttributedString:_attributedTitle];
         [s addAttribute:NSForegroundColorAttributeName
                   value:fontColor
                   range:NSMakeRange(0, [_attributedTitle length])];
         [s drawAtPoint:NSMakePoint(PADDING_WIDTH, padding_height)];
-        [s release];
     }
 }
 
@@ -130,16 +138,37 @@
     [self mouseDown:theEvent];
 }
 
+- (NSFont*)font {
+    return [NSFont menuBarFontOfSize:0];
+}
+
+- (void)_finishTitleSetting {
+    _titleRect = [_attributedTitle
+                  boundingRectWithSize:NSMakeSize(INFINITY, INFINITY)
+                  options:0];
+    [_statusItem setLength:_titleRect.size.width + PADDING_WIDTH * 2];
+    [self setNeedsLayout:YES];
+}
+
 - (void)setTitle:(NSString *)aTitle {
+    NSString *origS = [aTitle retain];
     NSAttributedString *s =
-            [[NSAttributedString new]
-             initWithString:aTitle
-             attributes:[NSDictionary
-                         dictionaryWithObjectsAndKeys:
-                         [NSFont menuBarFontOfSize:0], NSFontAttributeName,
-                         nil]];
-    [self setAttributedTitle:s];
-    [s release];
+    [[NSAttributedString new]
+     initWithString:origS
+     attributes:[NSDictionary
+                 dictionaryWithObjectsAndKeys:
+                 [self font], NSFontAttributeName,
+                 nil]];
+    if ([s isEqualToAttributedString:_attributedTitle]) {
+        [s release];
+        [origS release];
+        return;
+    }
+    if (_title) [_title release];
+    _title = origS;
+    if (_attributedTitle) [_attributedTitle release];
+    _attributedTitle = s;
+    [self _finishTitleSetting];
 }
 
 - (NSString*)title {
@@ -148,19 +177,37 @@
 
 - (void)setAttributedTitle:(NSAttributedString *)aTitle {
     if ([aTitle isEqualToAttributedString:_attributedTitle]) return;
-    if (_title != nil) [_title release];
-    if (_attributedTitle != nil) [_attributedTitle release];
+    if (_title) [_title release];
+    if (_attributedTitle) [_attributedTitle release];
     _attributedTitle = [aTitle retain];
-    _title = [_attributedTitle string];
-    _titleRect = [_attributedTitle
-                  boundingRectWithSize:NSMakeSize(INFINITY, INFINITY)
-                  options:0];
-    [_statusItem setLength:_titleRect.size.width + PADDING_WIDTH * 2];
-    [self setNeedsLayout:YES];
+    _title = [[_attributedTitle string] retain];
+    [self _finishTitleSetting];
 }
 
 - (NSAttributedString*)attributedTitle {
     return _attributedTitle;
+}
+
+- (void)setTitle:(NSString*)aTitle withColor:(NSColor*)aColor {
+    NSString *origS = [aTitle retain];
+    NSAttributedString *s =
+            [[NSAttributedString new]
+             initWithString:origS
+             attributes:[NSDictionary
+                         dictionaryWithObjectsAndKeys:
+                         [self font], NSFontAttributeName,
+                         aColor, NSForegroundColorAttributeName,
+                         nil]];
+    if ([s isEqualToAttributedString:_attributedTitle]) {
+        [s release];
+        [origS release];
+        return;
+    }
+    if (_title) [_title release];
+    _title = origS;
+    if (_attributedTitle) [_attributedTitle release];
+    _attributedTitle = s;
+    [self _finishTitleSetting];
 }
 
 - (void)setTarget:(id)theTarget {

@@ -70,6 +70,9 @@ enum MBTStatusItemViewState {
 - (void)setAttributedTitle:(NSAttributedString*)aTitle;
 - (NSAttributedString*)attributedTitle;
 
+/*! @method setTitle:withColor: */
+- (void)setTitle:(NSString*)aTitle withColor:(NSColor*)aColor;
+
 /*! @property state */
 - (void)setState:(enum MBTStatusItemViewState)theState;
 - (enum MBTStatusItemViewState)state;
