@@ -249,6 +249,13 @@ static void AutomatonPanic(NSString* msg) {
     // menu
     [menuItemOfPauseOrContinue setTitle:@"Continue"];
     
+    // title
+    {
+        NSString *s = [[statusView title] retain];;
+        [statusView setTitle:s withColor:[NSColor darkGrayColor]];
+        [s release];
+    }
+    
     state = MBTS_PAUSED;
 }
 
