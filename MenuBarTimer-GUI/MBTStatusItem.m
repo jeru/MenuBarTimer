@@ -74,6 +74,8 @@
 
 - (void)popUpPanel:(NSPanel*)thePanel;
 
+- (void)destroy;
+
 @end
 
 @implementation _MBTStatusItemView
@@ -113,9 +115,20 @@
 - (void)dealloc {
     [_title release];
     [_attributedTitle release];
-    [_statusItem release];
+    if (_statusItem) {
+        [[NSStatusBar systemStatusBar] removeStatusItem:_statusItem];
+        [_statusItem release];
+    }
     if (_tmpAttributedTitle) [_tmpAttributedTitle release];
     [super dealloc];
+}
+
+- (void)destroy {
+    if (_statusItem) {
+        [[NSStatusBar systemStatusBar] removeStatusItem:_statusItem];
+        [_statusItem release];
+        _statusItem = nil;
+    }
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
@@ -482,5 +495,8 @@
     [_view popUpPanel:thePanel];
 }
 
+- (void)destroy {
+    [_view destroy];
+}
 
 @end

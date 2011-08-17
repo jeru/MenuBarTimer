@@ -85,4 +85,8 @@ enum MBTStatusItemViewState {
 /*! @method popUpPanel: */
 - (void)popUpPanel:(NSPanel*)thePanel;
 
+/*! @method destroy: */
+- (void) destroy;
+// TODO: add state indicator to a destroyed MBTStatusItem.
+
 @end
