@@ -42,7 +42,7 @@
 		C747676C13F632F2001A3359 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C747676D13F632F2001A3359 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C747677013F632F2001A3359 /* MenuBarTimer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MenuBarTimer-Info.plist"; sourceTree = "<group>"; };
-		C747677213F632F2001A3359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C747677213F632F2001A3359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		C747677413F632F2001A3359 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C747677613F632F2001A3359 /* MenuBarTimer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MenuBarTimer-Prefix.pch"; sourceTree = "<group>"; };
 		C747677813F632F2001A3359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
@@ -52,10 +52,10 @@
 		C747678513F632F2001A3359 /* MenuBarTimerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MenuBarTimerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C747678613F632F2001A3359 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		C747678D13F632F2001A3359 /* MenuBarTimerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MenuBarTimerTests-Info.plist"; sourceTree = "<group>"; };
-		C747678F13F632F2001A3359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C747678F13F632F2001A3359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		C747679113F632F2001A3359 /* MenuBarTimerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuBarTimerTests.h; sourceTree = "<group>"; };
 		C747679313F632F2001A3359 /* MenuBarTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuBarTimerTests.m; sourceTree = "<group>"; };
-		C79A1EB213FC2D7E00CF3405 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/MBTTimerStatusItem.h; sourceTree = "<group>"; };
+		C79A1EB213FC2D7E00CF3405 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = MBTTimerStatusItem.h; sourceTree = "<group>"; };
 		C79A1EB613FC2E2C00CF3405 /* MBTTimerStatusItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTTimerStatusItem.m; sourceTree = "<group>"; };
 		C7AD5F4D13F6767800DEFC81 /* MenuForIdleDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuForIdleDelegate.h; sourceTree = "<group>"; };
 		C7AD5F4E13F6767800DEFC81 /* MenuForIdleDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuForIdleDelegate.m; sourceTree = "<group>"; };
