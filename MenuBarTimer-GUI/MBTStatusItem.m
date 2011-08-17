@@ -1,12 +1,12 @@
 //
-//  MBTStatusItemView.m
+//  MBTStatusItem.m
 //  MenuBarTimer
 //
 //  Created by Cheng Sheng on 15/8/11.
 //  Copyright 2011 Cheng Sheng. All rights reserved.
 //
 
-#import "MBTStatusItemView.h"
+#import "MBTStatusItem.h"
 #import "MBTUtils.h"
 
 // Hack to obtain position. Fuck Apple!
@@ -19,33 +19,78 @@
 }
 @end
 
-///////////////////////
-// MBTStatusItemView //
-///////////////////////
-@interface MBTStatusItemView () {
+////////////////////////
+// _MBTStatusItemView //
+////////////////////////
+@interface _MBTStatusItemView : NSView {
 @private
+    NSStatusItem *_statusItem;
+    
+    NSString *_title;
+    NSAttributedString *_attributedTitle;
+    NSRect _titleRect;
+    
+    enum MBTStatusItemViewState _state;
+    BOOL _blinkMode;
+    NSTimer *_blinkTimer;
+    
+    id _target;
+    SEL _actionOnNormal;
+    SEL _actionOnHighlighted;
+    SEL _actionOnBlinking;
+
     NSPanel *_poppedPanel;
     NSMenu *_poppedMenu;
     
     NSAttributedString *_tmpAttributedTitle;
 }
+
+- (void)setTitle:(NSString*)aTitle;
+- (NSString*)title;
+
+- (void)setAttributedTitle:(NSAttributedString*)aTitle;
+- (NSAttributedString*)attributedTitle;
+
+- (void)setTitle:(NSString*)aTitle withColor:(NSColor*)aColor;
+
+- (void)setState:(enum MBTStatusItemViewState)theState;
+- (enum MBTStatusItemViewState)state;
+
+- (void)setTarget:(id)theTarget;
+- (id)target;
+
+- (void)setActionOnNormal:(SEL)aSelector;
+- (SEL)actionOnNormal;
+
+- (void)setActionOnHighlighted:(SEL)aSelector;
+- (SEL)actionOnHighlighted;
+
+- (void)setActionOnBlinking:(SEL)aSelector;
+- (SEL)actionOnBlinking;
+
+- (NSRect)statusItemFrame;
+
+- (void)popUpMenu:(NSMenu*)theMenu;
+
+- (void)popUpPanel:(NSPanel*)thePanel;
+
 @end
-@implementation MBTStatusItemView
+
+@implementation _MBTStatusItemView
 
 #define PADDING_WIDTH 6
 #define BLINK_PERIOD 0.5
 
-- (id)initWithFrame:(NSRect)frame {
-    self = [super initWithFrame:frame];
+- (id)init {
+    self = [super init];
     if (self) {
         _statusItem = [[[NSStatusBar systemStatusBar]
-                        statusItemWithLength:NSVariableStatusItemLength]
+                        statusItemWithLength:1]
                        retain];
-        [_statusItem setView:self];
         // Initialization code here.
         _title = nil;
         _attributedTitle = nil;
-        [self setTitle:@""];
+        [self setTitle:@"123"];
         
         _state = MBTStatusItemViewStateNormal;
         _target = nil;
@@ -58,6 +103,8 @@
         _poppedMenu = nil;
         
         _tmpAttributedTitle = nil;
+
+        [_statusItem setView:self];
     }
     
     return self;
@@ -332,5 +379,108 @@
     [_poppedPanel setMovable:NO];
     [_poppedPanel makeKeyAndOrderFront:self];
 }
+
+@end
+
+///////////////////
+// MBTStatusItem //
+///////////////////
+
+@interface MBTStatusItem () {
+@private
+    _MBTStatusItemView *_view;
+}
+@end
+
+@implementation MBTStatusItem
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        _view = [_MBTStatusItemView new];
+    }
+    return self;
+}
+
+- (void)dealloc {
+    if (_view) {
+        [_view release];
+        _view = nil;
+    }
+    [super dealloc];
+}
+
+- (void)setTitle:(NSString*)aTitle {
+    [_view setTitle:aTitle];
+}
+
+- (NSString*)title {
+    return [_view title];
+}
+
+- (void)setAttributedTitle:(NSAttributedString*)aTitle {
+    [_view setAttributedTitle:aTitle];
+}
+
+- (NSAttributedString*)attributedTitle {
+    return [_view attributedTitle];
+}
+
+- (void)setTitle:(NSString*)aTitle withColor:(NSColor*)aColor {
+    [_view setTitle:aTitle withColor:aColor];
+}
+
+- (void)setState:(enum MBTStatusItemViewState)theState {
+    [_view setState:theState];
+}
+
+- (enum MBTStatusItemViewState)state {
+    return [_view state];
+}
+
+- (void)setTarget:(id)theTarget {
+    [_view setTarget:theTarget];
+}
+
+- (id)target {
+    return [_view target];
+}
+
+- (void)setActionOnNormal:(SEL)aSelector {
+    [_view setActionOnNormal:aSelector];
+}
+
+- (SEL)actionOnNormal {
+    return [_view actionOnNormal];
+}
+
+- (void)setActionOnHighlighted:(SEL)aSelector {
+    [_view setActionOnHighlighted:aSelector];
+}
+
+- (SEL)actionOnHighlighted {
+    return [_view actionOnHighlighted];
+}
+
+- (void)setActionOnBlinking:(SEL)aSelector {
+    [_view setActionOnBlinking:aSelector];
+}
+
+- (SEL)actionOnBlinking {
+    return [_view actionOnBlinking];
+}
+
+- (NSRect)statusItemFrame {
+    return [_view statusItemFrame];
+}
+
+- (void)popUpMenu:(NSMenu*)theMenu {
+    [_view popUpMenu:theMenu];
+}
+
+- (void)popUpPanel:(NSPanel*)thePanel {
+    [_view popUpPanel:thePanel];
+}
+
 
 @end

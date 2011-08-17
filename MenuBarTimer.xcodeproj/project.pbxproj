@@ -21,7 +21,7 @@
 		C7AD5F4F13F6767800DEFC81 /* MenuForIdleDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AD5F4E13F6767800DEFC81 /* MenuForIdleDelegate.m */; };
 		C7AD5F5C13F6CFEF00DEFC81 /* DurationInputDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AD5F5B13F6CFEF00DEFC81 /* DurationInputDelegate.m */; };
 		C7D3799713F8D52C000E94F8 /* MBTUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D3799613F8D52C000E94F8 /* MBTUtils.m */; };
-		C7D3799A13F8DE39000E94F8 /* MBTStatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D3799913F8DE39000E94F8 /* MBTStatusItemView.m */; };
+		C7D3799A13F8DE39000E94F8 /* MBTStatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D3799913F8DE39000E94F8 /* MBTStatusItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,8 +60,8 @@
 		C7AD5F5B13F6CFEF00DEFC81 /* DurationInputDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationInputDelegate.m; sourceTree = "<group>"; };
 		C7D3799513F8D52C000E94F8 /* MBTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBTUtils.h; sourceTree = "<group>"; };
 		C7D3799613F8D52C000E94F8 /* MBTUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBTUtils.m; sourceTree = "<group>"; };
-		C7D3799813F8DE39000E94F8 /* MBTStatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBTStatusItemView.h; sourceTree = "<group>"; };
-		C7D3799913F8DE39000E94F8 /* MBTStatusItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBTStatusItemView.m; sourceTree = "<group>"; };
+		C7D3799813F8DE39000E94F8 /* MBTStatusItem.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MBTStatusItem.h; sourceTree = "<group>"; };
+		C7D3799913F8DE39000E94F8 /* MBTStatusItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBTStatusItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,8 +175,8 @@
 		C7D3798F13F8D15C000E94F8 /* MenuBarTimer-GUI */ = {
 			isa = PBXGroup;
 			children = (
-				C7D3799813F8DE39000E94F8 /* MBTStatusItemView.h */,
-				C7D3799913F8DE39000E94F8 /* MBTStatusItemView.m */,
+				C7D3799813F8DE39000E94F8 /* MBTStatusItem.h */,
+				C7D3799913F8DE39000E94F8 /* MBTStatusItem.m */,
 			);
 			path = "MenuBarTimer-GUI";
 			sourceTree = "<group>";
@@ -303,7 +303,7 @@
 				C7AD5F4F13F6767800DEFC81 /* MenuForIdleDelegate.m in Sources */,
 				C7AD5F5C13F6CFEF00DEFC81 /* DurationInputDelegate.m in Sources */,
 				C7D3799713F8D52C000E94F8 /* MBTUtils.m in Sources */,
-				C7D3799A13F8DE39000E94F8 /* MBTStatusItemView.m in Sources */,
+				C7D3799A13F8DE39000E94F8 /* MBTStatusItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

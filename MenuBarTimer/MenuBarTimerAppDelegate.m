@@ -7,7 +7,7 @@
 //
 
 #import "MenuBarTimerAppDelegate.h"
-#import "MBTStatusItemView.h"
+#import "MBTStatusItem.h"
 #import "MBTUtils.h"
 
 /////////////////////////////
@@ -120,23 +120,23 @@ static void AutomatonPanic(NSString* msg) {
         if ([windowForInput isVisible]) {
             [windowForInput orderOut:sender];
         } else {
-            [statusView popUpPanel:windowForInput];
+            [statusItem popUpPanel:windowForInput];
             [durationInput selectText:self];
         }
     } else if (state == MBTS_TIMING || state == MBTS_PAUSED) {
-        [statusView popUpMenu:menuForStateTimingOrPaused];
+        [statusItem popUpMenu:menuForStateTimingOrPaused];
     } else if (state == MBTS_FINISHED) {
-        [statusView setState:MBTStatusItemViewStateNormal];
+        [statusItem setState:MBTStatusItemViewStateNormal];
         [self setUpForStateIdle];
     }
 }
 
 - (void)awakeFromNib {
-    statusView = [MBTStatusItemView new];
-    [statusView setTarget:self];
-    [statusView setActionOnNormal:@selector(clickStatusItem:)];
-    [statusView setActionOnHighlighted:@selector(clickStatusItem:)];
-    [statusView setActionOnBlinking:@selector(clickStatusItem:)];
+    statusItem = [MBTStatusItem new];
+    [statusItem setTarget:self];
+    [statusItem setActionOnNormal:@selector(clickStatusItem:)];
+    [statusItem setActionOnHighlighted:@selector(clickStatusItem:)];
+    [statusItem setActionOnBlinking:@selector(clickStatusItem:)];
     [self setUpForStateIdle];
 }     
 
@@ -189,19 +189,19 @@ static void AutomatonPanic(NSString* msg) {
 
 - (void)renderSeconds:(double)seconds {
     if (seconds <= 0.5) {
-        [statusView setTitle:@"00:00"];
+        [statusItem setTitle:@"00:00"];
     } else {
         int intSeconds = (int)floor(seconds + 0.5);
         if (intSeconds >= 15 * 60)
             intSeconds /= 60;
         NSString *text = [NSString stringWithFormat:@"%.2d:%.2d", intSeconds / 60, intSeconds % 60];
-        [statusView setTitle:text];
+        [statusItem setTitle:text];
     }
 }
 
 - (void)setUpForStateIdle {
     state = MBTS_INVALID;
-    [statusView setTitle:@"Timer"];
+    [statusItem setTitle:@"Timer"];
     state = MBTS_IDLE;
 }
 
@@ -251,8 +251,8 @@ static void AutomatonPanic(NSString* msg) {
     
     // title
     {
-        NSString *s = [[statusView title] retain];;
-        [statusView setTitle:s withColor:[NSColor darkGrayColor]];
+        NSString *s = [[statusItem title] retain];;
+        [statusItem setTitle:s withColor:[NSColor darkGrayColor]];
         [s release];
     }
     
@@ -261,8 +261,8 @@ static void AutomatonPanic(NSString* msg) {
 
 - (void)setUpForStateFinished {
     state = MBTS_FINISHED;
-    [statusView setTitle:@"00:00"];
-    [statusView setState:MBTStatusItemViewStateBlinking];
+    [statusItem setTitle:@"00:00"];
+    [statusItem setState:MBTStatusItemViewStateBlinking];
 }
 
 @end

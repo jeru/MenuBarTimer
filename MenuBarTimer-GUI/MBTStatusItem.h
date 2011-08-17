@@ -1,5 +1,5 @@
 //
-//  MBTStatusItemView.h
+//  MBTStatusItem.h
 //  MenuBarTimer
 //
 //  Created by Cheng Sheng on 15/8/11.
@@ -11,7 +11,7 @@
 /*!
  * @enum MBTStatusItemViewState
  * @abstract The possible values of the @link state @/link property of
- *           @link MBTStatusItemView @/link.
+ *           @link MBTStatusItem @/link.
  * @constant MBTStatusItemViewStateNormal Normal (not highlighted, not
  *           blinking).
  * @constant MBTStatusItemViewStateHighlighed Highlighted.
@@ -24,7 +24,7 @@ enum MBTStatusItemViewState {
 };
 
 /*!
- * @interface MBTStatusItemView 
+ * @interface MBTStatusItem 
  * This interface creates an NSStatusItem and displays a text designated by
  * @link title @/link property. It can support popping up a panel or menu via
  * @link popUpPanel: @/link or @link popUpMenu: @/link, which shows the panel or menu
@@ -32,35 +32,19 @@ enum MBTStatusItemViewState {
  * loses keyboard focus or the menu gets untracked, it hides the panel or menu,
  * and unhighlight the status item.
  *
- * @link MBTStatusItemView @/link provides a property @link state @/link to control
+ * @link MBTStatusItem @/link provides a property @link state @/link to control
  * the highlighting directly. When @link state @/link is
  * @link MBTStatusItemViewStatesNormal @/link, the status item is not highlighed;
  * when it is @link MBTStatusItemViewStatesHighlighted @/link, the status item is
  * highlighed; when it is @link MBTStatusItemViewStatesBlinking @/link, the
  * status item will blink.
  *
- * When the status item of @link MBTStatusItemView @/link is clicked, an action
+ * When the status item of @link MBTStatusItem @/link is clicked, an action
  * will be invoked, selected from properties @link actionOnNormal @/link,
  * @link actionOnHighlighted @/link and @link actionOnBlinking @/link accordingly by
  * the current @link state @/link.
  */
-@interface MBTStatusItemView : NSView {
-@private
-    NSStatusItem *_statusItem;
-
-    NSString *_title;
-    NSAttributedString *_attributedTitle;
-    NSRect _titleRect;
-    
-    enum MBTStatusItemViewState _state;
-    BOOL _blinkMode;
-    NSTimer *_blinkTimer;
-    
-    id _target;
-    SEL _actionOnNormal;
-    SEL _actionOnHighlighted;
-    SEL _actionOnBlinking;
-}
+@interface MBTStatusItem : NSObject
 
 /*! @property title */
 - (void)setTitle:(NSString*)aTitle;
