@@ -18,6 +18,7 @@
 		C747679013F632F2001A3359 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C747678E13F632F2001A3359 /* InfoPlist.strings */; };
 		C747679213F632F2001A3359 /* MenuBarTimerTests.h in Resources */ = {isa = PBXBuildFile; fileRef = C747679113F632F2001A3359 /* MenuBarTimerTests.h */; };
 		C747679413F632F2001A3359 /* MenuBarTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C747679313F632F2001A3359 /* MenuBarTimerTests.m */; };
+		C79A1EB513FC2E2C00CF3405 /* MBTTimerStatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A1EB613FC2E2C00CF3405 /* MBTTimerStatusItem.m */; };
 		C7AD5F4F13F6767800DEFC81 /* MenuForIdleDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AD5F4E13F6767800DEFC81 /* MenuForIdleDelegate.m */; };
 		C7AD5F5C13F6CFEF00DEFC81 /* DurationInputDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C7AD5F5B13F6CFEF00DEFC81 /* DurationInputDelegate.m */; };
 		C7D3799713F8D52C000E94F8 /* MBTUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D3799613F8D52C000E94F8 /* MBTUtils.m */; };
@@ -54,13 +55,15 @@
 		C747678F13F632F2001A3359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C747679113F632F2001A3359 /* MenuBarTimerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuBarTimerTests.h; sourceTree = "<group>"; };
 		C747679313F632F2001A3359 /* MenuBarTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuBarTimerTests.m; sourceTree = "<group>"; };
+		C79A1EB213FC2D7E00CF3405 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/MBTTimerStatusItem.h; sourceTree = "<group>"; };
+		C79A1EB613FC2E2C00CF3405 /* MBTTimerStatusItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTTimerStatusItem.m; sourceTree = "<group>"; };
 		C7AD5F4D13F6767800DEFC81 /* MenuForIdleDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuForIdleDelegate.h; sourceTree = "<group>"; };
 		C7AD5F4E13F6767800DEFC81 /* MenuForIdleDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuForIdleDelegate.m; sourceTree = "<group>"; };
 		C7AD5F5A13F6CFEF00DEFC81 /* DurationInputDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DurationInputDelegate.h; sourceTree = "<group>"; };
 		C7AD5F5B13F6CFEF00DEFC81 /* DurationInputDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationInputDelegate.m; sourceTree = "<group>"; };
 		C7D3799513F8D52C000E94F8 /* MBTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBTUtils.h; sourceTree = "<group>"; };
 		C7D3799613F8D52C000E94F8 /* MBTUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBTUtils.m; sourceTree = "<group>"; };
-		C7D3799813F8DE39000E94F8 /* MBTStatusItem.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MBTStatusItem.h; sourceTree = "<group>"; };
+		C7D3799813F8DE39000E94F8 /* MBTStatusItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBTStatusItem.h; sourceTree = "<group>"; };
 		C7D3799913F8DE39000E94F8 /* MBTStatusItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBTStatusItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,6 +180,8 @@
 			children = (
 				C7D3799813F8DE39000E94F8 /* MBTStatusItem.h */,
 				C7D3799913F8DE39000E94F8 /* MBTStatusItem.m */,
+				C79A1EB313FC2D7E00CF3405 /* MBTTimerStatusItem.h */,
+				C79A1EB613FC2E2C00CF3405 /* MBTTimerStatusItem.m */,
 			);
 			path = "MenuBarTimer-GUI";
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = C747675913F632F2001A3359;
 			productRefGroup = C747676513F632F2001A3359 /* Products */;
@@ -304,6 +310,7 @@
 				C7AD5F5C13F6CFEF00DEFC81 /* DurationInputDelegate.m in Sources */,
 				C7D3799713F8D52C000E94F8 /* MBTUtils.m in Sources */,
 				C7D3799A13F8DE39000E94F8 /* MBTStatusItem.m in Sources */,
+				C79A1EB513FC2E2C00CF3405 /* MBTTimerStatusItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +363,14 @@
 				C747678F13F632F2001A3359 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C79A1EB313FC2D7E00CF3405 /* MBTTimerStatusItem.h */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C79A1EB213FC2D7E00CF3405 /* en */,
+			);
+			name = MBTTimerStatusItem.h;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

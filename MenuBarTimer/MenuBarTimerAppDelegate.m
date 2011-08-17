@@ -8,6 +8,7 @@
 
 #import "MenuBarTimerAppDelegate.h"
 #import "MBTStatusItem.h"
+#import "MBTTimerStatusItem.h"
 #import "MBTUtils.h"
 
 /////////////////////////////
@@ -138,10 +139,15 @@ static void AutomatonPanic(NSString* msg) {
     [statusItem setActionOnHighlighted:@selector(clickStatusItem:)];
     [statusItem setActionOnBlinking:@selector(clickStatusItem:)];
     [self setUpForStateIdle];
-}     
+}
+
+- (void)cancelTimer:(MBTTimerStatusItem*)item {
+    [item destroy];
+    [item release];
+}
 
 - (IBAction)clickGo:(id)sender {
-    if (state != MBTS_IDLE) AutomatonPanic(@"Expect state = MBTS_IDLE");
+    //if (state != MBTS_IDLE) AutomatonPanic(@"Expect state = MBTS_IDLE");
     NSString *text = [durationInput stringValue];
     int time = parseTimeString(text);
     if (time < 0) {
@@ -154,7 +160,12 @@ static void AutomatonPanic(NSString* msg) {
         [theAlert runModal];
     } else {
         [windowForInput orderOut:sender];
-        [self setUpForStateTiming:time];
+        //[self setUpForStateTiming:time];
+        MBTTimerStatusItem *tmp = [MBTTimerStatusItem new];
+        [tmp setTarget:self];
+        [tmp setActionOnCancel:@selector(cancelTimer:)];
+        [tmp start:time];
+        // TODO: keep track of "tmp" in case it is not canceled?
     }
 }
 
@@ -188,15 +199,7 @@ static void AutomatonPanic(NSString* msg) {
 }
 
 - (void)renderSeconds:(double)seconds {
-    if (seconds <= 0.5) {
-        [statusItem setTitle:@"00:00"];
-    } else {
-        int intSeconds = (int)floor(seconds + 0.5);
-        if (intSeconds >= 15 * 60)
-            intSeconds /= 60;
-        NSString *text = [NSString stringWithFormat:@"%.2d:%.2d", intSeconds / 60, intSeconds % 60];
-        [statusItem setTitle:text];
-    }
+    [statusItem setTitle:[MBTUtils renderTime:seconds]];
 }
 
 - (void)setUpForStateIdle {

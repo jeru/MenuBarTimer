@@ -38,4 +38,15 @@
     return ret;
 }
 
++ (NSString*)renderTime:(double)seconds {
+    if (seconds < 0.5 - 1e-6) {
+        return @"00:00";
+    } else {
+        int intSeconds = (int)floor(seconds + 0.5);
+        if (intSeconds >= 15 * 60)
+            intSeconds /= 60;
+        return [NSString stringWithFormat:@"%.2d:%.2d", intSeconds / 60, intSeconds % 60];
+    }
+}
+
 @end

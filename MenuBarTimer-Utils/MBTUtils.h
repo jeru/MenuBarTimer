@@ -10,4 +10,5 @@
 
 @interface MBTUtils : NSObject
 + (NSPoint) determinePopUpPosition:(NSSize)size statusItem:(NSRect)statusItem;
++ (NSString*) renderTime:(double)seconds;
 @end
