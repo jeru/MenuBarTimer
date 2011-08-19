@@ -7,13 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MenuForIdleDelegate.h"
 #import "MBTStatusItem.h"
 
 @interface MenuBarTimerAppDelegate : NSObject <NSApplicationDelegate> {
-    IBOutlet NSMenu *menuForStateIdle;
-    IBOutlet NSMenu *menuForStateTimingOrPaused;
-    IBOutlet NSMenuItem *menuItemOfPauseOrContinue;
     IBOutlet NSTextField *durationInput;
     IBOutlet NSPanel *windowForInput;
     

@@ -2,7 +2,7 @@
 //  DurationInputDelegate.m
 //  MenuBarTimer
 //
-//  Created by Cheng Sheng on 13/8/11.
+//  Created by Cheng Sheng on 19/8/11.
 //  Copyright 2011 Cheng Sheng. All rights reserved.
 //
 
@@ -10,22 +10,12 @@
 
 @implementation DurationInputDelegate
 
-- (id)init
+- (BOOL)control:(NSControl *)control
+       textView:(NSTextView *)textView
+doCommandBySelector:(SEL)commandSelector
 {
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
-
-- (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector {
-    if (commandSelector == @selector(insertNewline:)) {
-        [goButton performClick:self];
-        return YES;
-    } else if (commandSelector == @selector(cancelOperation:)) {
-        [cancelButton performClick:self];
+    if (commandSelector == @selector(cancelOperation:)) {
+        [self sendAction:self.action to:self.target];
         return YES;
     }
     return NO;

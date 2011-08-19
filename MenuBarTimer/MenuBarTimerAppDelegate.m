@@ -28,6 +28,8 @@ static void AutomatonPanic(NSString* msg) {
 @interface MenuBarTimerAppDelegate () {
 }
 - (void)renderSeconds:(double)seconds;
+- (void)executeGo:(id)sender;
+- (void)executeCancel:(id)sender;
 @end
 
 @implementation MenuBarTimerAppDelegate
@@ -45,22 +47,7 @@ static void AutomatonPanic(NSString* msg) {
     }
 }
 
-- (void)awakeFromNib {
-    statusItem = [MBTStatusItem new];
-    [statusItem setTarget:self];
-    [statusItem setActionOnNormal:@selector(clickStatusItem:)];
-    [statusItem setActionOnHighlighted:@selector(clickStatusItem:)];
-    [statusItem setActionOnBlinking:@selector(clickStatusItem:)];
-    [statusItem setTitle:@"Timer"];
-}
-
-- (void)cancelTimer:(MBTTimerStatusItem*)item {
-    [item destroy];
-    [item release];
-}
-
-- (IBAction)clickGo:(id)sender {
-    //if (state != MBTS_IDLE) AutomatonPanic(@"Expect state = MBTS_IDLE");
+- (void)executeGo:(id)sender {
     NSString *text = [durationInput stringValue];
     int time = [MBTUtils parseTimeString:text];
     if (time < 0) {
@@ -82,7 +69,30 @@ static void AutomatonPanic(NSString* msg) {
     }
 }
 
+- (void)awakeFromNib {
+    statusItem = [MBTStatusItem new];
+    [statusItem setTarget:self];
+    [statusItem setActionOnNormal:@selector(clickStatusItem:)];
+    [statusItem setActionOnHighlighted:@selector(clickStatusItem:)];
+    [statusItem setActionOnBlinking:@selector(clickStatusItem:)];
+    [statusItem setTitle:@"Timer"];
+}
+
+- (void)cancelTimer:(MBTTimerStatusItem*)item {
+    [item destroy];
+    [item release];
+}
+
+- (IBAction)clickGo:(id)sender {
+    [self executeGo:sender];
+}
+
+
 - (IBAction)clickCancel:(id)sender {
+    [self executeCancel:sender];
+}
+
+- (void)executeCancel:(id)sender {
     [windowForInput orderOut:sender];
 }
 

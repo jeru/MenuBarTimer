@@ -2,17 +2,14 @@
 //  DurationInputDelegate.h
 //  MenuBarTimer
 //
-//  Created by Cheng Sheng on 13/8/11.
+//  Created by Cheng Sheng on 19/8/11.
 //  Copyright 2011 Cheng Sheng. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 
-@interface DurationInputDelegate : NSObject <NSTextFieldDelegate> {
-    IBOutlet NSButton *goButton;
-    IBOutlet NSButton *cancelButton;
-}
-
-- (BOOL)control:(NSControl *)control textView:(NSTextView *)textView doCommandBySelector:(SEL)commandSelector;
+// The default action of this delegation will be triggered when
+// <Escape> is typed.
+@interface DurationInputDelegate : NSControl <NSTextFieldDelegate>
 
 @end
