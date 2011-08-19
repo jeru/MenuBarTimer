@@ -77,6 +77,18 @@ enum MBTStatusItemViewState {
 - (void)setActionOnBlinking:(SEL)aSelector;
 - (SEL)actionOnBlinking;
 
+/*! @property actionOnCancelPopped
+ * Warning: when a menu is popped, the next click on the status
+ * item will not trigger any of actionOnXXX, but
+ * actionOnCancelPopped. Don't ask me why: it's Apple who did it...
+ * If a panel is popped, by clicking the status item, both actionOnXXX
+ * and actionOnCancelPopped will be invoked.
+ *
+ * XXX = Normal, Highlighted or Blinking.
+ */
+- (void)setActionOnCancelPopped:(SEL)aSelector;
+- (SEL)actionOnCancelPopped;
+
 - (NSRect)statusItemFrame;
 
 /*! @method popUpMenu: */

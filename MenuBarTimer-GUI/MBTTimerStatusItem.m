@@ -150,6 +150,8 @@
          @selector(_cancelMenu:)];
         [_statusItem setActionOnBlinking:
          @selector(_stopBlinking:)];
+        [_statusItem setActionOnCancelPopped:
+         @selector(_stopBlinking:)];
     }
     
     return self;

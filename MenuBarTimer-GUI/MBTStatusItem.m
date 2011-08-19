@@ -55,6 +55,7 @@
 @property(readwrite, assign) SEL actionOnNormal;
 @property(readwrite, assign) SEL actionOnHighlighted;
 @property(readwrite, assign) SEL actionOnBlinking;
+@property(readwrite, assign) SEL actionOnCancelPopped;
 
 - (NSRect)statusItemFrame;
 
@@ -71,6 +72,7 @@
 @synthesize actionOnNormal;
 @synthesize actionOnHighlighted;
 @synthesize actionOnBlinking;
+@synthesize actionOnCancelPopped;
 
 #define PADDING_WIDTH 6
 #define BLINK_PERIOD 0.5
@@ -294,6 +296,7 @@
 }
 
 - (void)clearPopped {
+    BOOL poppedCanceled = NO;
     if (_poppedMenu) {
         [[NSNotificationCenter defaultCenter]
          removeObserver:self
@@ -301,6 +304,7 @@
          object:_poppedMenu];
         [_poppedMenu cancelTracking];
         _poppedMenu = nil;
+        poppedCanceled = YES;
     }
     if (_poppedPanel) {
         [[NSNotificationCenter defaultCenter]
@@ -309,6 +313,13 @@
          object:_poppedPanel];
         [_poppedPanel orderOut:self];
         _poppedPanel = nil;
+        poppedCanceled = YES;
+    }
+    if (poppedCanceled
+        && [target respondsToSelector:actionOnCancelPopped])
+    {
+        [target performSelector:actionOnCancelPopped
+                     withObject:self];
     }
 }
 
@@ -437,6 +448,14 @@
 
 - (SEL)actionOnBlinking {
     return [_view actionOnBlinking];
+}
+
+- (void)setActionOnCancelPopped:(SEL)aSelector {
+    [_view setActionOnCancelPopped:aSelector];
+}
+
+- (SEL)actionOnCancelPopped {
+    return [_view actionOnCancelPopped];
 }
 
 - (NSRect)statusItemFrame {
