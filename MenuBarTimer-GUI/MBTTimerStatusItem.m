@@ -102,6 +102,11 @@
     [self cancel];
 }
 
+- (void)_menuCanceled:(id)sender {
+    if (_state == MBTTimerStatusItemStateFinished)
+        [self _stopBlinking:sender];
+}
+
 - (id)init
 {
     self = [super init];
@@ -151,7 +156,7 @@
         [_statusItem setActionOnBlinking:
          @selector(_stopBlinking:)];
         [_statusItem setActionOnCancelPopped:
-         @selector(_stopBlinking:)];
+         @selector(_menuCanceled:)];
     }
     
     return self;
