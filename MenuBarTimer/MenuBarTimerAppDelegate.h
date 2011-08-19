@@ -10,25 +10,13 @@
 #import "MenuForIdleDelegate.h"
 #import "MBTStatusItem.h"
 
-enum MenuBarTimerState {
-    MBTS_IDLE,
-    MBTS_TIMING,
-    MBTS_PAUSED,
-    MBTS_FINISHED,
-    
-    MBTS_INVALID
-};
-
 @interface MenuBarTimerAppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet NSMenu *menuForStateIdle;
     IBOutlet NSMenu *menuForStateTimingOrPaused;
     IBOutlet NSMenuItem *menuItemOfPauseOrContinue;
     IBOutlet NSTextField *durationInput;
-    IBOutlet NSView *durationInputView;
     IBOutlet NSPanel *windowForInput;
     
-    enum MenuBarTimerState state;
-    NSMenuItem *clickPauseOrContinue;
     MBTStatusItem *statusItem;
 }
 
@@ -36,7 +24,5 @@ enum MenuBarTimerState {
 
 - (IBAction)clickGo:(id)sender;
 - (IBAction)clickCancel:(id)sender;
-- (IBAction)clickPauseOrContinue:(id)sender;
-- (IBAction)clickStop:(id)sender;
 
 @end

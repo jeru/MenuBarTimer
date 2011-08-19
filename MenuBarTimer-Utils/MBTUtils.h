@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface MBTUtils : NSObject
+
 + (NSPoint) determinePopUpPosition:(NSSize)size statusItem:(NSRect)statusItem;
+
 + (NSString*) renderTime:(double)seconds;
+
+// return value: the number of seconds.
+// return negative number for error.
++ (int)parseTimeString:(NSString*)text;
+
 @end
