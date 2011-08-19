@@ -34,11 +34,6 @@
     BOOL _blinkMode;
     NSTimer *_blinkTimer;
     
-    id _target;
-    SEL _actionOnNormal;
-    SEL _actionOnHighlighted;
-    SEL _actionOnBlinking;
-
     NSPanel *_poppedPanel;
     NSMenu *_poppedMenu;
     
@@ -56,17 +51,10 @@
 - (void)setState:(enum MBTStatusItemViewState)theState;
 - (enum MBTStatusItemViewState)state;
 
-- (void)setTarget:(id)theTarget;
-- (id)target;
-
-- (void)setActionOnNormal:(SEL)aSelector;
-- (SEL)actionOnNormal;
-
-- (void)setActionOnHighlighted:(SEL)aSelector;
-- (SEL)actionOnHighlighted;
-
-- (void)setActionOnBlinking:(SEL)aSelector;
-- (SEL)actionOnBlinking;
+@property(nonatomic, assign) id target;
+@property(readwrite, assign) SEL actionOnNormal;
+@property(readwrite, assign) SEL actionOnHighlighted;
+@property(readwrite, assign) SEL actionOnBlinking;
 
 - (NSRect)statusItemFrame;
 
@@ -79,6 +67,10 @@
 @end
 
 @implementation _MBTStatusItemView
+@synthesize target;
+@synthesize actionOnNormal;
+@synthesize actionOnHighlighted;
+@synthesize actionOnBlinking;
 
 #define PADDING_WIDTH 6
 #define BLINK_PERIOD 0.5
@@ -95,10 +87,6 @@
         [self setTitle:@"123"];
         
         _state = MBTStatusItemViewStateNormal;
-        _target = nil;
-        _actionOnNormal = nil;
-        _actionOnHighlighted = nil;
-        _actionOnBlinking = nil;
         _blinkTimer = nil;
         
         _poppedPanel = nil;
@@ -181,17 +169,17 @@
     SEL action = nil;
     switch (_state) {
         case MBTStatusItemViewStateNormal:
-            action = _actionOnNormal;
+            action = actionOnNormal;
             break;
         case MBTStatusItemViewStateHighlighted:
-            action = _actionOnHighlighted;
+            action = actionOnHighlighted;
             break;
         case MBTStatusItemViewStateBlinking:
-            action = _actionOnBlinking;
+            action = actionOnBlinking;
             break;
     }
-    if ([_target respondsToSelector:action])
-        [_target performSelector:action withObject:self];
+    if ([target respondsToSelector:action])
+        [target performSelector:action withObject:self];
 }
 
 - (void)rightMouseDown:(NSEvent *)theEvent {
@@ -268,38 +256,6 @@
     if (_attributedTitle) [_attributedTitle release];
     _attributedTitle = s;
     [self _finishTitleSetting];
-}
-
-- (void)setTarget:(id)theTarget {
-    _target = theTarget;
-}
-
-- (id)target {
-    return _target;
-}
-
-- (void)setActionOnNormal:(SEL)aSelector {
-    _actionOnNormal = aSelector;
-}
-
-- (SEL)actionOnNormal {
-    return _actionOnNormal;
-}
-
-- (void)setActionOnHighlighted:(SEL)aSelector {
-    _actionOnHighlighted = aSelector;
-}
-
-- (SEL)actionOnHighlighted {
-    return _actionOnHighlighted;
-}
-
-- (void)setActionOnBlinking:(SEL)aSelector {
-    _actionOnBlinking = aSelector;
-}
-
-- (SEL)actionOnBlinking {
-    return _actionOnBlinking;
 }
 
 - (void)blinkTimerFired:(NSTimer*)timer {
