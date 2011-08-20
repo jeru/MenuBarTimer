@@ -1,0 +1,3 @@
+I made MenuBarTimer simply because I think a timer that appears as an isolated window is too heavy-weighted. I just want the timers reside on the status bar, without their own menu or docking icon, just like "Time-applet" in Gnome Desktop.
+
+-- Cheng Sheng

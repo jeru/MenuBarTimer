@@ -1,0 +1,9 @@
+MenuBarTimer v0.2
+* GUI change: the main status bar item starts timers. Each timer has its own
+status bar item. Pause or stop a timer on its own status bar item.
+* A small icon for the main status bar item, instead of the cumbersome text.
+* Allow configuring to start MenuBarTimer on login. 
+
+MenuBarTimer v0.1
+* A single status bar item to start, pause, stop a single timer (just like
+Gnome "Timer-applet").
