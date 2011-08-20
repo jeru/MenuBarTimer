@@ -9,6 +9,31 @@
 #import "MBTUtils.h"
 #import <AppKit/AppKit.h>
 
+//////////////
+// MBTUtils //
+//////////////
+
+@implementation MBTUtils
+
++ (NSPoint) determinePopUpPosition:(NSSize)size statusItem:(NSRect)statusItem {
+    NSSize screen = [[NSScreen mainScreen] frame].size;
+    NSPoint ret;
+    ret.y = statusItem.origin.y - size.height;
+    if (size.width > screen.width) {
+        ret.x = 0;
+    } else if (statusItem.origin.x + size.width <= screen.width) {
+        ret.x = statusItem.origin.x;
+    } else if (statusItem.origin.x + statusItem.size.width >= size.width) {
+        ret.x = statusItem.origin.x + statusItem.size.width - size.width;
+    } else {
+        // TODO: any better way to determine the position?
+        ret.x = 0;
+    }
+    return ret;
+}
+
+@end
+
 /////////////////////////////
 // Some utility functions. //
 /////////////////////////////
@@ -27,38 +52,11 @@ static inline BOOL isSuffix(unichar c) {
     return c == 's' || c == 'm' || c == 'h' || c == 'd';
 }
 
-//////////////
-// MBTUtils //
-//////////////
+/////////////////////
+// MBTUtils (Time) //
+/////////////////////
 
-@implementation MBTUtils
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
-
-+ (NSPoint) determinePopUpPosition:(NSSize)size statusItem:(NSRect)statusItem {
-    NSSize screen = [[NSScreen mainScreen] frame].size;
-    NSPoint ret;
-    ret.y = statusItem.origin.y - size.height;
-    if (size.width > screen.width) {
-        ret.x = 0;
-    } else if (statusItem.origin.x + size.width <= screen.width) {
-        ret.x = statusItem.origin.x;
-    } else if (statusItem.origin.x + statusItem.size.width >= size.width) {
-        ret.x = statusItem.origin.x + statusItem.size.width - size.width;
-    } else {
-        // TODO: any better way to determine the position?
-        ret.x = 0;
-    }
-    return ret;
-}
+@implementation MBTUtils (Time)
 
 + (NSString*)renderTime:(double)seconds {
     if (seconds < 0.5 - 1e-6) {
@@ -126,6 +124,99 @@ static inline BOOL isSuffix(unichar c) {
     if (ret > INT32_MAX)
         return -2;
     return (int)ret;
+}
+
+@end
+
+#import <Cocoa/Cocoa.h>
+
+/////////////////////////////
+// Some utility functions. //
+/////////////////////////////
+
+static LSSharedFileListRef getList() {
+    return LSSharedFileListCreate(NULL,
+                                  kLSSharedFileListSessionLoginItems,
+                                  NULL);
+}
+
+static BOOL equivPath(NSString *a, NSString *b) {
+    if (a == nil || b == nil) return a == nil && b == nil;
+    return [a isEqualToString:b];
+}
+
+static BOOL findItem(LSSharedFileListRef list,
+                     NSString* appPath,
+                     void (*action)(LSSharedFileListRef,
+                                    LSSharedFileListItemRef))
+{
+    BOOL ret = NO;
+    UInt32 seed;
+    CFArrayRef array = LSSharedFileListCopySnapshot(list, &seed);
+    for (id enum_item in (NSArray*)array) {
+        LSSharedFileListItemRef item =
+        (LSSharedFileListItemRef)enum_item;
+        CFURLRef url;
+        OSStatus retval = LSSharedFileListItemResolve(item, 0,
+                                                      &url, NULL);
+        NSString *pathStr = [(NSURL*)url path];
+        if (retval == noErr && equivPath(pathStr, appPath)) {
+            ret = YES;
+            if (action) action(list, item);
+        }
+        CFRelease(url);
+        
+        if (ret) break;
+    }
+    CFRelease(array);
+    return ret;
+}
+
+static void deleteSharedFileListItem(LSSharedFileListRef list,
+                                     LSSharedFileListItemRef item) {
+    LSSharedFileListItemRemove(list, item);
+}
+
+///////////////////////////
+// MBTUtils (LoginItems) //
+///////////////////////////
+
+@implementation MBTUtils (LoginItems)
+
++ (BOOL)checkLoginItem:(NSString*)appPath {
+    LSSharedFileListRef list = getList();
+    if (!list) return NO;
+    BOOL ret = findItem(list, appPath, NULL);
+    CFRelease(list);
+    return ret;
+}
+
++ (BOOL)removeLoginItem:(NSString*)appPath {
+    NSLog(@"removeLoginItem(%@)", appPath);
+    LSSharedFileListRef list = getList();
+    if (!list) return NO;
+    BOOL ret = findItem(list, appPath, deleteSharedFileListItem);
+    CFRelease(list);
+    return ret;
+}
+
++ (BOOL)addLoginItem:(NSString*)appPath {
+    NSLog(@"addLoginItem(%@)", appPath);
+    LSSharedFileListRef list = getList();
+    if (!list) return NO;
+    CFURLRef url = (CFURLRef)[NSURL fileURLWithPath:appPath];
+    LSSharedFileListItemRef item =
+    LSSharedFileListInsertItemURL(
+                                  list, kLSSharedFileListItemLast,
+                                  (CFStringRef)@"MenuBarTimer", NULL, url,
+                                  NULL, NULL);
+    BOOL ret = NO;
+    if (item) {
+        CFRelease(item);
+        ret = YES;
+    }
+    CFRelease(list);
+    return ret;
 }
 
 @end

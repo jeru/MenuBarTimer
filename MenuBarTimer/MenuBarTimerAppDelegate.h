@@ -12,6 +12,7 @@
 @interface MenuBarTimerAppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet NSTextField *durationInput;
     IBOutlet NSPanel *windowForInput;
+    IBOutlet NSButton *toggleStartOnLogin;
     
     MBTStatusItem *statusItem;
 }
@@ -20,5 +21,6 @@
 
 - (IBAction)clickGo:(id)sender;
 - (IBAction)clickCancel:(id)sender;
+- (IBAction)toggleLoginItem:(id)sender;
 
 @end

@@ -12,10 +12,27 @@
 
 + (NSPoint) determinePopUpPosition:(NSSize)size statusItem:(NSRect)statusItem;
 
+@end
+
+@interface MBTUtils (Time)
+
 + (NSString*) renderTime:(double)seconds;
 
 // return value: the number of seconds.
 // return negative number for error.
 + (int)parseTimeString:(NSString*)text;
+
+@end
+
+@interface MBTUtils (LoginItems)
+
+// returns YES if found.
++ (BOOL)checkLoginItem:(NSString*)appPath;
+
+// returns YES if successfully removed.
++ (BOOL)removeLoginItem:(NSString*)appPath;
+
+// returns YES if successfully added.
++ (BOOL)addLoginItem:(NSString*)appPath;
 
 @end

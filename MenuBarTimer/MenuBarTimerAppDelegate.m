@@ -87,12 +87,12 @@ static void AutomatonPanic(NSString* msg) {
 }
 
 - (void)awakeFromNib {
+    // statusItem
     statusItem = [[MBTStatusItem alloc] init];
     [statusItem setTarget:self];
     [statusItem setActionOnNormal:@selector(clickStatusItem:)];
     [statusItem setActionOnHighlighted:@selector(clickStatusItem:)];
     [statusItem setActionOnBlinking:@selector(clickStatusItem:)];
-    //[statusItem setTitle:@"Timer"];
     NSBundle *bundle = [NSBundle mainBundle];
     {
         NSString *path = [bundle pathForResource:@"clock" ofType:@"png"];
@@ -107,6 +107,11 @@ static void AutomatonPanic(NSString* msg) {
         img = [img initWithContentsOfFile:path];
         [statusItem setAlternativeImage:img];
         [img release];
+    }
+    // toggleStartOnLogin
+    {
+        BOOL found = [MBTUtils checkLoginItem:[bundle bundlePath]];
+        [toggleStartOnLogin setState:(found ? NSOnState : NSOffState)];
     }
 }
 
@@ -123,6 +128,16 @@ static void AutomatonPanic(NSString* msg) {
 
 - (IBAction)clickCancel:(id)sender {
     [self executeCancel:sender];
+}
+
+- (IBAction)toggleLoginItem:(id)sender {
+    if ([toggleStartOnLogin state] == NSOnState) {
+        if (![MBTUtils addLoginItem:[[NSBundle mainBundle] bundlePath]])
+            [toggleStartOnLogin setState:NSOffState];
+    } else {
+        if (![MBTUtils removeLoginItem:[[NSBundle mainBundle] bundlePath]])
+            [toggleStartOnLogin setState:NSOnState];
+    }
 }
 
 - (void)executeCancel:(id)sender {
