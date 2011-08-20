@@ -16,9 +16,6 @@
 		C747677F13F632F2001A3359 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = C747677D13F632F2001A3359 /* Main.xib */; };
 		C747678713F632F2001A3359 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747678613F632F2001A3359 /* SenTestingKit.framework */; };
 		C747678813F632F2001A3359 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747676813F632F2001A3359 /* Cocoa.framework */; };
-		C747679013F632F2001A3359 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C747678E13F632F2001A3359 /* InfoPlist.strings */; };
-		C747679213F632F2001A3359 /* MenuBarTimerTests.h in Resources */ = {isa = PBXBuildFile; fileRef = C747679113F632F2001A3359 /* MenuBarTimerTests.h */; };
-		C747679413F632F2001A3359 /* MenuBarTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C747679313F632F2001A3359 /* MenuBarTimerTests.m */; };
 		C75BE41213FEB0CB001A40EA /* DurationInputDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C75BE41113FEB0CB001A40EA /* DurationInputDelegate.m */; };
 		C75BE44113FF7634001A40EA /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = C75BE44013FF7634001A40EA /* clock.png */; };
 		C79A1EB513FC2E2C00CF3405 /* MBTTimerStatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A1EB613FC2E2C00CF3405 /* MBTTimerStatusItem.m */; };
@@ -53,10 +50,6 @@
 		C747677E13F632F2001A3359 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = Main.xib; sourceTree = "<group>"; };
 		C747678513F632F2001A3359 /* MenuBarTimerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MenuBarTimerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C747678613F632F2001A3359 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		C747678D13F632F2001A3359 /* MenuBarTimerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MenuBarTimerTests-Info.plist"; sourceTree = "<group>"; };
-		C747678F13F632F2001A3359 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
-		C747679113F632F2001A3359 /* MenuBarTimerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuBarTimerTests.h; sourceTree = "<group>"; };
-		C747679313F632F2001A3359 /* MenuBarTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuBarTimerTests.m; sourceTree = "<group>"; };
 		C75BE41013FEB0CB001A40EA /* DurationInputDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DurationInputDelegate.h; sourceTree = "<group>"; };
 		C75BE41113FEB0CB001A40EA /* DurationInputDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationInputDelegate.m; sourceTree = "<group>"; };
 		C75BE44013FF7634001A40EA /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
@@ -96,7 +89,6 @@
 				C7D3799413F8D4BC000E94F8 /* MenuBarTimer-Utils */,
 				C7D3798F13F8D15C000E94F8 /* MenuBarTimer-GUI */,
 				C747676E13F632F2001A3359 /* MenuBarTimer */,
-				C747678B13F632F2001A3359 /* MenuBarTimerTests */,
 				C747676713F632F2001A3359 /* Frameworks */,
 				C747676513F632F2001A3359 /* Products */,
 			);
@@ -152,25 +144,6 @@
 				C747677413F632F2001A3359 /* main.m */,
 				C747677613F632F2001A3359 /* MenuBarTimer-Prefix.pch */,
 				C747677713F632F2001A3359 /* Credits.rtf */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C747678B13F632F2001A3359 /* MenuBarTimerTests */ = {
-			isa = PBXGroup;
-			children = (
-				C747679113F632F2001A3359 /* MenuBarTimerTests.h */,
-				C747679313F632F2001A3359 /* MenuBarTimerTests.m */,
-				C747678C13F632F2001A3359 /* Supporting Files */,
-			);
-			path = MenuBarTimerTests;
-			sourceTree = "<group>";
-		};
-		C747678C13F632F2001A3359 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C747678D13F632F2001A3359 /* MenuBarTimerTests-Info.plist */,
-				C747678E13F632F2001A3359 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -287,8 +260,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C747679013F632F2001A3359 /* InfoPlist.strings in Resources */,
-				C747679213F632F2001A3359 /* MenuBarTimerTests.h in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +299,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C747679413F632F2001A3359 /* MenuBarTimerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,14 +335,6 @@
 				C747677E13F632F2001A3359 /* en */,
 			);
 			name = Main.xib;
-			sourceTree = "<group>";
-		};
-		C747678E13F632F2001A3359 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C747678F13F632F2001A3359 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		C79A1EB313FC2D7E00CF3405 /* MBTTimerStatusItem.h */ = {
