@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C70EE51013FF8B2700052F92 /* inverted_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = C70EE50F13FF8B2700052F92 /* inverted_clock.png */; };
 		C747676913F632F2001A3359 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747676813F632F2001A3359 /* Cocoa.framework */; };
 		C747677313F632F2001A3359 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C747677113F632F2001A3359 /* InfoPlist.strings */; };
 		C747677513F632F2001A3359 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C747677413F632F2001A3359 /* main.m */; };
@@ -19,6 +20,7 @@
 		C747679213F632F2001A3359 /* MenuBarTimerTests.h in Resources */ = {isa = PBXBuildFile; fileRef = C747679113F632F2001A3359 /* MenuBarTimerTests.h */; };
 		C747679413F632F2001A3359 /* MenuBarTimerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C747679313F632F2001A3359 /* MenuBarTimerTests.m */; };
 		C75BE41213FEB0CB001A40EA /* DurationInputDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C75BE41113FEB0CB001A40EA /* DurationInputDelegate.m */; };
+		C75BE44113FF7634001A40EA /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = C75BE44013FF7634001A40EA /* clock.png */; };
 		C79A1EB513FC2E2C00CF3405 /* MBTTimerStatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A1EB613FC2E2C00CF3405 /* MBTTimerStatusItem.m */; };
 		C7D3799713F8D52C000E94F8 /* MBTUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D3799613F8D52C000E94F8 /* MBTUtils.m */; };
 		C7D3799A13F8DE39000E94F8 /* MBTStatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D3799913F8DE39000E94F8 /* MBTStatusItem.m */; };
@@ -35,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C70EE50F13FF8B2700052F92 /* inverted_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inverted_clock.png; sourceTree = "<group>"; };
 		C747676413F632F2001A3359 /* MenuBarTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuBarTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C747676813F632F2001A3359 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C747676B13F632F2001A3359 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -56,6 +59,7 @@
 		C747679313F632F2001A3359 /* MenuBarTimerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuBarTimerTests.m; sourceTree = "<group>"; };
 		C75BE41013FEB0CB001A40EA /* DurationInputDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DurationInputDelegate.h; sourceTree = "<group>"; };
 		C75BE41113FEB0CB001A40EA /* DurationInputDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationInputDelegate.m; sourceTree = "<group>"; };
+		C75BE44013FF7634001A40EA /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		C79A1EB213FC2D7E00CF3405 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = MBTTimerStatusItem.h; sourceTree = "<group>"; };
 		C79A1EB613FC2E2C00CF3405 /* MBTTimerStatusItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTTimerStatusItem.m; sourceTree = "<group>"; };
 		C7D3799513F8D52C000E94F8 /* MBTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBTUtils.h; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 		C747675913F632F2001A3359 = {
 			isa = PBXGroup;
 			children = (
+				C75BE43F13FF751C001A40EA /* Images */,
 				C7D3799413F8D4BC000E94F8 /* MenuBarTimer-Utils */,
 				C7D3798F13F8D15C000E94F8 /* MenuBarTimer-GUI */,
 				C747676E13F632F2001A3359 /* MenuBarTimer */,
@@ -168,6 +173,15 @@
 				C747678E13F632F2001A3359 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C75BE43F13FF751C001A40EA /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C70EE50F13FF8B2700052F92 /* inverted_clock.png */,
+				C75BE44013FF7634001A40EA /* clock.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		C7D3798F13F8D15C000E94F8 /* MenuBarTimer-GUI */ = {
@@ -264,6 +278,8 @@
 				C747677313F632F2001A3359 /* InfoPlist.strings in Resources */,
 				C747677913F632F2001A3359 /* Credits.rtf in Resources */,
 				C747677F13F632F2001A3359 /* Main.xib in Resources */,
+				C75BE44113FF7634001A40EA /* clock.png in Resources */,
+				C70EE51013FF8B2700052F92 /* inverted_clock.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

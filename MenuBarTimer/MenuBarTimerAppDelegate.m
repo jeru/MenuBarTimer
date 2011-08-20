@@ -75,7 +75,22 @@ static void AutomatonPanic(NSString* msg) {
     [statusItem setActionOnNormal:@selector(clickStatusItem:)];
     [statusItem setActionOnHighlighted:@selector(clickStatusItem:)];
     [statusItem setActionOnBlinking:@selector(clickStatusItem:)];
-    [statusItem setTitle:@"Timer"];
+    //[statusItem setTitle:@"Timer"];
+    NSBundle *bundle = [NSBundle mainBundle];
+    {
+        NSString *path = [bundle pathForResource:@"clock" ofType:@"png"];
+        NSImage *img = [NSImage alloc];
+        img = [img initWithContentsOfFile:path];
+        [statusItem setImage:img];
+        [img release];
+    }
+    {
+        NSString *path = [bundle pathForResource:@"inverted_clock" ofType:@"png"];
+        NSImage *img = [NSImage alloc];
+        img = [img initWithContentsOfFile:path];
+        [statusItem setAlternativeImage:img];
+        [img release];
+    }
 }
 
 - (void)cancelTimer:(MBTTimerStatusItem*)item {

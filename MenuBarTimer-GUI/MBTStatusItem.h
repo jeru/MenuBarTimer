@@ -61,6 +61,14 @@ enum MBTStatusItemViewState {
 - (void)setState:(enum MBTStatusItemViewState)theState;
 - (enum MBTStatusItemViewState)state;
 
+/*! @property image */
+- (void)setImage:(NSImage*)anImage;
+- (NSImage*)image;
+
+/*! @property alternativeImage */
+- (void)setAlternativeImage:(NSImage*)anImage;
+- (NSImage*)alternativeImage;
+
 /*! @property target */
 - (void)setTarget:(id)theTarget;
 - (id)target;

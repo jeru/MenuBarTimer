@@ -30,6 +30,9 @@
     NSAttributedString *_attributedTitle;
     NSRect _titleRect;
     
+    NSImage *_image;
+    NSImage *_alternativeImage;
+    
     enum MBTStatusItemViewState _state;
     BOOL _blinkMode;
     NSTimer *_blinkTimer;
@@ -47,6 +50,11 @@
 - (NSAttributedString*)attributedTitle;
 
 - (void)setTitle:(NSString*)aTitle withColor:(NSColor*)aColor;
+
+- (void)setImage:(NSImage*)anImage;
+- (NSImage*)image;
+- (void)setAlternativeImage:(NSImage*)anImage;
+- (NSImage*)alternativeImage;
 
 - (void)setState:(enum MBTStatusItemViewState)theState;
 - (enum MBTStatusItemViewState)state;
@@ -86,7 +94,10 @@
         // Initialization code here.
         _title = nil;
         _attributedTitle = nil;
-        [self setTitle:@"123"];
+        [self setTitle:@""];
+        
+        _image = nil;
+        _alternativeImage = nil;
         
         _state = MBTStatusItemViewStateNormal;
         _blinkTimer = nil;
@@ -110,6 +121,8 @@
         [_statusItem release];
     }
     if (_tmpAttributedTitle) [_tmpAttributedTitle release];
+    if (_image) [_image release];
+    if (_alternativeImage) [_alternativeImage release];
     [super dealloc];
 }
 
@@ -126,31 +139,64 @@
             (_state == MBTStatusItemViewStateHighlighted
              || (_state == MBTStatusItemViewStateBlinking
                  && _blinkMode));
-    CGFloat padding_height = ([[_statusItem statusBar] thickness]
-                              - _titleRect.size.height + 1) / 2;
+    CGFloat txt_width = 0, txt_padding_height = 0;
+    if (_titleRect.size.width > 0) {
+        txt_width = _titleRect.size.width;
+        txt_padding_height =
+                ([[_statusItem statusBar] thickness]
+                 - _titleRect.size.height + 1) / 2;
+    }
     NSColor *fontColor = realHighlight ? [NSColor whiteColor]
                                        : [NSColor blackColor];
+    CGFloat img_width = 0, img_padding_height = 0;
+    NSImage *img = nil;
+    if (!realHighlight) {
+        if (_image)
+            img = _image;
+    } else {
+        if (_alternativeImage)
+            img = _alternativeImage;
+        else if (_image)
+            img = _image;
+    }
+    if (img) {
+        img_width = [img size].width;
+        img_padding_height =
+                ([[_statusItem statusBar] thickness]
+                 - [img size].height + 1) / 2;
+    }
+    CGFloat width = 0, txt_left = 0, img_left = 0;
+    if (txt_width > 0 && img_width > 0) {
+        width = PADDING_WIDTH * 3 + txt_width + img_width;
+        txt_left = PADDING_WIDTH * 2 + img_width;
+        img_left = PADDING_WIDTH;
+    } else if (txt_width > 0 || img_width > 0) {
+        width = PADDING_WIDTH * 2 + txt_width + img_width;
+        txt_left = img_left = PADDING_WIDTH;
+    }
+    if (width == 0) width = 1;
+    [_statusItem setLength:width];
     [_statusItem drawStatusBarBackgroundInRect:[self bounds]
                                  withHighlight:realHighlight];
-    BOOL titleIsColored = NO;
-    {
-        NSRange r;
-        for (NSUInteger i = 0; i < [_attributedTitle length];) {
-            if ([[_attributedTitle attributesAtIndex:0
-                                      effectiveRange:&r]
-                 objectForKey:NSForegroundColorAttributeName])
-            {
-                titleIsColored = YES;
-                break;
-            }
-            i = r.location + r.length;
-        }
+    if (img) {
+        /*
+        NSCompositingOperation comp =
+                realHighlight ? NSCompositeSourceAtop
+                              : NSCompositeDestinationAtop;
+         */
+        NSCompositingOperation comp = NSCompositeSourceOver;
+        [img drawAtPoint:NSMakePoint(img_left,
+                                     img_padding_height)
+                fromRect:NSZeroRect
+               operation:comp
+                fraction:1];
     }
     // Try this coloring method: if highlighted, white; otherwise,
     // the original color(s).
     if (!realHighlight) {
         [_attributedTitle
-         drawAtPoint:NSMakePoint(PADDING_WIDTH, padding_height)];
+         drawAtPoint:NSMakePoint(txt_left,
+                                 txt_padding_height)];
     } else {
         NSMutableAttributedString *s = [NSMutableAttributedString new];
         if (_tmpAttributedTitle) [_tmpAttributedTitle release];
@@ -159,7 +205,8 @@
         [s addAttribute:NSForegroundColorAttributeName
                   value:fontColor
                   range:NSMakeRange(0, [_attributedTitle length])];
-        [s drawAtPoint:NSMakePoint(PADDING_WIDTH, padding_height)];
+        [s drawAtPoint:NSMakePoint(txt_left,
+                                   txt_padding_height)];
     }
 }
 
@@ -196,8 +243,7 @@
     _titleRect = [_attributedTitle
                   boundingRectWithSize:NSMakeSize(INFINITY, INFINITY)
                   options:0];
-    [_statusItem setLength:_titleRect.size.width + PADDING_WIDTH * 2];
-    [self setNeedsLayout:YES];
+    [self setNeedsDisplay:YES];
 }
 
 - (void)setTitle:(NSString *)aTitle {
@@ -258,6 +304,26 @@
     if (_attributedTitle) [_attributedTitle release];
     _attributedTitle = s;
     [self _finishTitleSetting];
+}
+
+- (void)setImage:(NSImage*)anImage {
+    if (_image) [_image release];
+    _image = [anImage retain];
+    [self setNeedsDisplay:YES];
+}
+
+- (NSImage*)image {
+    return _image;
+}
+
+- (void)setAlternativeImage:(NSImage*)anImage {
+    if (_alternativeImage) [_alternativeImage release];
+    _alternativeImage = [anImage retain];
+    [self setNeedsDisplay:YES];
+}
+
+- (NSImage*)alternativeImage {
+    return _alternativeImage;
 }
 
 - (void)blinkTimerFired:(NSTimer*)timer {
@@ -416,6 +482,22 @@
 
 - (enum MBTStatusItemViewState)state {
     return [_view state];
+}
+
+- (void)setImage:(NSImage*)anImage {
+    [_view setImage:anImage];
+}
+
+- (NSImage*)image {
+    return [_view image];
+}
+
+- (void)setAlternativeImage:(NSImage*)anImage {
+    [_view setAlternativeImage:anImage];
+}
+
+- (NSImage*)alternativeImage {
+    return [_view alternativeImage];
 }
 
 - (void)setTarget:(id)theTarget {
