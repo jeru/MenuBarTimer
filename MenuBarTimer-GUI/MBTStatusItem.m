@@ -39,8 +39,6 @@
     
     NSPanel *_poppedPanel;
     NSMenu *_poppedMenu;
-    
-    NSAttributedString *_tmpAttributedTitle;
 }
 
 - (void)setTitle:(NSString*)aTitle;
@@ -104,8 +102,6 @@
         
         _poppedPanel = nil;
         _poppedMenu = nil;
-        
-        _tmpAttributedTitle = nil;
 
         [_statusItem setView:self];
     }
@@ -120,7 +116,6 @@
         [[NSStatusBar systemStatusBar] removeStatusItem:_statusItem];
         [_statusItem release];
     }
-    if (_tmpAttributedTitle) [_tmpAttributedTitle release];
     if (_image) [_image release];
     if (_alternativeImage) [_alternativeImage release];
     [super dealloc];
@@ -198,15 +193,14 @@
          drawAtPoint:NSMakePoint(txt_left,
                                  txt_padding_height)];
     } else {
-        NSMutableAttributedString *s = [NSMutableAttributedString new];
-        if (_tmpAttributedTitle) [_tmpAttributedTitle release];
-        _tmpAttributedTitle = s;
-        [s initWithAttributedString:_attributedTitle];
+        NSMutableAttributedString *s = [NSMutableAttributedString alloc];
+        s = [s initWithAttributedString:_attributedTitle];
         [s addAttribute:NSForegroundColorAttributeName
                   value:fontColor
                   range:NSMakeRange(0, [_attributedTitle length])];
         [s drawAtPoint:NSMakePoint(txt_left,
                                    txt_padding_height)];
+        [s release];
     }
 }
 

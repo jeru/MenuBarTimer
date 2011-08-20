@@ -26,6 +26,8 @@ static void AutomatonPanic(NSString* msg) {
 /////////////////////////////
 
 @interface MenuBarTimerAppDelegate () {
+@private
+    NSMutableSet *timersInRun;
 }
 - (void)renderSeconds:(double)seconds;
 - (void)executeGo:(id)sender;
@@ -35,7 +37,18 @@ static void AutomatonPanic(NSString* msg) {
 @implementation MenuBarTimerAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+    timersInRun = [NSMutableSet new];
+}
+
+- (void)dealloc {
+    if (timersInRun) {
+        for (id obj in timersInRun)
+            [obj release];
+        [timersInRun removeAllObjects];
+        [timersInRun release];
+        timersInRun = nil;
+    }
+    [super dealloc];
 }
 
 - (void)clickStatusItem:(id)sender {
@@ -61,11 +74,11 @@ static void AutomatonPanic(NSString* msg) {
     } else {
         [windowForInput orderOut:sender];
         //[self setUpForStateTiming:time];
-        MBTTimerStatusItem *tmp = [MBTTimerStatusItem new];
-        [tmp setTarget:self];
-        [tmp setActionOnCancel:@selector(cancelTimer:)];
-        [tmp start:time];
-        // TODO: keep track of "tmp" in case it is not canceled?
+        MBTTimerStatusItem *timer = [[MBTTimerStatusItem alloc] init];
+        [timersInRun addObject:timer];
+        [timer setTarget:self];
+        [timer setActionOnCancel:@selector(cancelTimer:)];
+        [timer start:time];
     }
 }
 
@@ -96,6 +109,7 @@ static void AutomatonPanic(NSString* msg) {
 - (void)cancelTimer:(MBTTimerStatusItem*)item {
     [item destroy];
     [item release];
+    [timersInRun removeObject:item];
 }
 
 - (IBAction)clickGo:(id)sender {
