@@ -37,7 +37,7 @@ static void AutomatonPanic(NSString* msg) {
 @implementation MenuBarTimerAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    timersInRun = [NSMutableSet new];
+    timersInRun = [[NSMutableSet alloc] init];
 }
 
 - (void)dealloc {
@@ -83,7 +83,7 @@ static void AutomatonPanic(NSString* msg) {
 }
 
 - (void)awakeFromNib {
-    statusItem = [MBTStatusItem new];
+    statusItem = [[MBTStatusItem alloc] init];
     [statusItem setTarget:self];
     [statusItem setActionOnNormal:@selector(clickStatusItem:)];
     [statusItem setActionOnHighlighted:@selector(clickStatusItem:)];

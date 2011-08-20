@@ -117,15 +117,15 @@
         _state = MBTTimerStatusItemStateIdle;
         
         // Setup the menu.
-        _menu = [NSMenu new];
-        _menuItemPauseOrContinue = [NSMenuItem new]; {
+        _menu = [[NSMenu alloc] init];
+        _menuItemPauseOrContinue = [[NSMenuItem alloc] init]; {
             [_menu addItem:_menuItemPauseOrContinue];
             [_menuItemPauseOrContinue setTarget:self];
             [_menuItemPauseOrContinue
              setAction:@selector(_clickPauseOrContinue:)];
             [_menuItemPauseOrContinue setEnabled:YES];
         }
-        _menuItemStop = [NSMenuItem new]; {
+        _menuItemStop = [[NSMenuItem alloc] init]; {
             [_menu addItem:_menuItemStop];
             [_menuItemStop setTarget:self];
             [_menuItemStop
@@ -136,7 +136,7 @@
             [_menuItemStop setEnabled:YES];
         }
         [_menu addItem:[NSMenuItem separatorItem]];
-        _menuItemExit = [NSMenuItem new]; {
+        _menuItemExit = [[NSMenuItem alloc] init]; {
             [_menu addItem:_menuItemExit];
             [_menuItemExit setTarget:self];
             [_menuItemExit
@@ -147,7 +147,7 @@
             [_menuItemExit setEnabled:YES];
         }
 
-        _statusItem = [MBTStatusItem new];
+        _statusItem = [[MBTStatusItem alloc] init];
         [_statusItem setTarget:self];
         [_statusItem setActionOnNormal:
          @selector(_popMenu:)];

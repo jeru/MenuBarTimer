@@ -245,7 +245,7 @@
 - (void)setTitle:(NSString *)aTitle {
     NSString *origS = [aTitle retain];
     NSAttributedString *s =
-    [[NSAttributedString new]
+    [[NSAttributedString alloc]
      initWithString:origS
      attributes:[NSDictionary
                  dictionaryWithObjectsAndKeys:
@@ -283,7 +283,7 @@
 - (void)setTitle:(NSString*)aTitle withColor:(NSColor*)aColor {
     NSString *origS = [aTitle retain];
     NSAttributedString *s =
-            [[NSAttributedString new]
+            [[NSAttributedString alloc]
              initWithString:origS
              attributes:[NSDictionary
                          dictionaryWithObjectsAndKeys:
@@ -439,7 +439,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        _view = [_MBTStatusItemView new];
+        _view = [[_MBTStatusItemView alloc] init];
     }
     return self;
 }
