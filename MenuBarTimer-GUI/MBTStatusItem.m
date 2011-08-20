@@ -195,6 +195,8 @@
     } else {
         NSMutableAttributedString *s = [NSMutableAttributedString alloc];
         s = [s initWithAttributedString:_attributedTitle];
+        [s removeAttribute:NSForegroundColorAttributeName
+                     range:NSMakeRange(0, [s length])];
         [s addAttribute:NSForegroundColorAttributeName
                   value:fontColor
                   range:NSMakeRange(0, [_attributedTitle length])];
