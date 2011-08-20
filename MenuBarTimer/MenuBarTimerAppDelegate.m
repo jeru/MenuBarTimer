@@ -40,6 +40,10 @@ static void AutomatonPanic(NSString* msg) {
     timersInRun = [[NSMutableSet alloc] init];
 }
 
+- (void)applicationWillBecomeActive:(NSNotification *)notification {
+    [NSApp hide:self];
+}
+
 - (void)dealloc {
     if (timersInRun) {
         for (id obj in timersInRun)
