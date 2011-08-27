@@ -70,6 +70,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{5, 52}, {170, 22}}</string>
 							<reference key="NSSuperview" ref="788805930"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1068247945"/>
 							<string key="NSReuseIdentifierKey">_NS:248</string>
 							<bool key="NSEnabled">YES</bool>
@@ -112,6 +113,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{126, 26}, {49, 24}}</string>
 							<reference key="NSSuperview" ref="788805930"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="557038893"/>
 							<string key="NSReuseIdentifierKey">_NS:1737</string>
 							<bool key="NSEnabled">YES</bool>
@@ -135,6 +137,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{74, 26}, {49, 24}}</string>
 							<reference key="NSSuperview" ref="788805930"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="514416036"/>
 							<string key="NSReuseIdentifierKey">_NS:1737</string>
 							<bool key="NSEnabled">YES</bool>
@@ -158,6 +161,8 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{11, 4}, {159, 18}}</string>
 							<reference key="NSSuperview" ref="788805930"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:239</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="392337215">
@@ -185,6 +190,7 @@
 					</object>
 					<string key="NSFrameSize">{180, 78}</string>
 					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="215501648"/>
 					<string key="NSReuseIdentifierKey">_NS:2837</string>
 				</object>
@@ -475,7 +481,105 @@
 			<nil key="sourceID"/>
 			<int key="maxID">617</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">DurationInputDelegate</string>
+					<string key="superclassName">NSControl</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/DurationInputDelegate.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MenuBarTimerAppDelegate</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>clickCancel:</string>
+							<string>clickGo:</string>
+							<string>toggleLoginItem:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>clickCancel:</string>
+							<string>clickGo:</string>
+							<string>toggleLoginItem:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">clickCancel:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">clickGo:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">toggleLoginItem:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>durationInput</string>
+							<string>toggleStartOnLogin</string>
+							<string>windowForInput</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSTextField</string>
+							<string>NSButton</string>
+							<string>NSPanel</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>durationInput</string>
+							<string>toggleStartOnLogin</string>
+							<string>windowForInput</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">durationInput</string>
+								<string key="candidateClassName">NSTextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">toggleStartOnLogin</string>
+								<string key="candidateClassName">NSButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">windowForInput</string>
+								<string key="candidateClassName">NSPanel</string>
+							</object>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MenuBarTimerAppDelegate.h</string>
+					</object>
+				</object>
+			</object>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">

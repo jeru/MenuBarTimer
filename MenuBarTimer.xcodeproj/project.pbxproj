@@ -63,6 +63,7 @@
 		C747675913F632F2001A3359 = {
 			isa = PBXGroup;
 			children = (
+				C760665B1409520C006A63D1 /* Nibs */,
 				C75BE43F13FF751C001A40EA /* Images */,
 				C7D3799413F8D4BC000E94F8 /* MenuBarTimer-Utils */,
 				C7D3798F13F8D15C000E94F8 /* MenuBarTimer-GUI */,
@@ -105,7 +106,6 @@
 			children = (
 				C747677A13F632F2001A3359 /* MenuBarTimerAppDelegate.h */,
 				C747677B13F632F2001A3359 /* MenuBarTimerAppDelegate.m */,
-				C747677D13F632F2001A3359 /* Main.xib */,
 				C75BE41013FEB0CB001A40EA /* DurationInputDelegate.h */,
 				C75BE41113FEB0CB001A40EA /* DurationInputDelegate.m */,
 				C747676F13F632F2001A3359 /* Supporting Files */,
@@ -132,6 +132,14 @@
 				C75BE44013FF7634001A40EA /* clock.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		C760665B1409520C006A63D1 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				C747677D13F632F2001A3359 /* Main.xib */,
+			);
+			path = Nibs;
 			sourceTree = "<group>";
 		};
 		C7D3798F13F8D15C000E94F8 /* MenuBarTimer-GUI */ = {
