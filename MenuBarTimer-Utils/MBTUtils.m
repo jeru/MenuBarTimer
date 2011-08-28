@@ -46,10 +46,53 @@ static inline BOOL isDigit(unichar c) {
     return '0' <= c && c <= '9';
 }
 
-static inline BOOL isSuffix(unichar c) {
+enum MBTTimerSuffix {
+    MBTTimerSuffixNone = 0,
+    MBTTimerSuffixSecond,
+    MBTTimerSuffixMinute,
+    MBTTimerSuffixHour,
+    MBTTimerSuffixDay
+};
+
+static inline BOOL regexFound(NSRegularExpression *re, NSString *str) {
+    return [re
+            numberOfMatchesInString:str
+            options:0
+            range:NSMakeRange(0, [str length])] > 0;
+}
+
+static inline enum MBTTimerSuffix getSuffix(unichar c) {
     if ('A' <= c && c <= 'Z')
         c = c - 'A' + 'a';
-    return c == 's' || c == 'm' || c == 'h' || c == 'd';
+    NSString *second =
+        NSLocalizedString(@"secondUnit", 
+                          @"Short input unit for second. "
+                           "It can be a comma-separated set of letters.");
+    NSString *minute =
+        NSLocalizedString(@"minuteUnit", 
+                          @"Short input unit for minute. "
+                          "It can be a comma-separated set of letters.");
+    NSString *hour =
+        NSLocalizedString(@"hourUnit", 
+                          @"Short input unit for hour. "
+                          "It can be a comma-separated set of letters.");
+    NSString *day =
+        NSLocalizedString(@"dayUnit", 
+                          @"Short input unit for day. "
+                          "It can be a comma-separated set of letters.");
+    NSError *error = nil;
+    NSRegularExpression *regex =
+        [NSRegularExpression
+         regularExpressionWithPattern:[NSString
+                                       stringWithFormat:
+                                       @"(^|,)%C($|,)", c]
+         options:NSRegularExpressionCaseInsensitive error:&error];
+    assert(error == nil);
+    if (regexFound(regex, second)) return MBTTimerSuffixSecond;
+    if (regexFound(regex, minute)) return MBTTimerSuffixMinute;
+    if (regexFound(regex, hour  )) return MBTTimerSuffixHour;
+    if (regexFound(regex, day   )) return MBTTimerSuffixDay;
+    return MBTTimerSuffixNone;
 }
 
 /////////////////////
@@ -73,7 +116,11 @@ static inline BOOL isSuffix(unichar c) {
     int64_t second = -1, minute = -1, hour = -1, day = -1;
     for (NSUInteger i = 0; i < [text length]; ++i) {
         unichar c = [text characterAtIndex:i];
-        if (!isBlank(c) && !isDigit(c) && !isSuffix(c)) return -1;
+        if (!isBlank(c) && !isDigit(c)
+            && getSuffix(c) == MBTTimerSuffixNone)
+        {
+            return -1;
+        }
     }
     for (NSUInteger i = 0, j = 0; i < [text length]; i = j) {
         unichar c = [text characterAtIndex:i];
@@ -92,21 +139,21 @@ static inline BOOL isSuffix(unichar c) {
             if (num > INT32_MAX)
                 return -2;
         }
-        unichar suf = 's';
-        if (j < [text length] && isSuffix([text characterAtIndex:j])) {
-            suf = [text characterAtIndex:j];
+        enum MBTTimerSuffix suf = MBTTimerSuffixSecond;
+        if (j < [text length]) {
+            suf = getSuffix([text characterAtIndex:j]);
             ++j;
         }
-        if (suf == 's') {
+        if (suf == MBTTimerSuffixSecond) {
             if (second != -1) return -3;
             second = num;
-        } else if (suf == 'm') {
+        } else if (suf == MBTTimerSuffixMinute) {
             if (minute != -1) return -3;
             minute = num;
-        } else if (suf == 'h') {
+        } else if (suf == MBTTimerSuffixHour) {
             if (hour != -1) return -3;
             hour = num;
-        } else {  // suf == 'd'
+        } else {  // suf == MBTTimerSuffixDay
             if (day != -1) return -3;
             day = num;
         }

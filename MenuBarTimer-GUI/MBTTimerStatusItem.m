@@ -84,11 +84,11 @@
 - (void)_popMenu:(id)sender {
     if (_state == MBTTimerStatusItemStateTiming) {
         [_menuItemPauseOrContinue setTitle:
-         NSLocalizedString(@"Pause",
+         NSLocalizedString(@"PauseTimer",
                            @"Suspend the timer.")];
     } else {
         [_menuItemPauseOrContinue setTitle:
-         NSLocalizedString(@"Continue",
+         NSLocalizedString(@"ContinueTimer",
                            @"Resume the timer.")];
     }
     [_statusItem popUpMenu:_menu];
@@ -131,7 +131,7 @@
             [_menuItemStop
              setAction:@selector(_clickStop:)];
             [_menuItemStop setTitle:
-             NSLocalizedString(@"Stop",
+             NSLocalizedString(@"StopTimer",
                                @"Cancel the timer.")];
             [_menuItemStop setEnabled:YES];
         }
@@ -142,7 +142,7 @@
             [_menuItemExit
              setAction:@selector(_clickExit:)];
             [_menuItemExit setTitle:
-             NSLocalizedString(@"Exit",
+             NSLocalizedString(@"ExitApp",
                                @"Quit the application.")];
             [_menuItemExit setEnabled:YES];
         }

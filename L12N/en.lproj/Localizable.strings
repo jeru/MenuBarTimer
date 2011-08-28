@@ -1,23 +1,23 @@
 /* Resume the timer. */
-"ContinueTimer" = "继续";
+"ContinueTimer" = "Continue";
 
 /* Quit the application. */
-"ExitApp" = "退出";
+"ExitApp" = "Exit";
 
 /* Suspend the timer. */
-"PauseTimer" = "暂停";
+"PauseTimer" = "Pause";
 
 /* Cancel the timer. */
-"StopTimer" = "停止";
+"StopTimer" = "Stop";
 
 /* Short input unit for day */
-"dayUnit" = "t,天";
+"dayUnit" = "d";
 
 /* Short input unit for hour */
-"hourUnit" = "s,时";
+"hourUnit" = "h";
 
 /* Short input unit for minute */
-"minuteUnit" = "f,分";
+"minuteUnit" = "m";
 
 /* Short input unit for second */
-"secondUnit" = "m,秒";
+"secondUnit" = "s";

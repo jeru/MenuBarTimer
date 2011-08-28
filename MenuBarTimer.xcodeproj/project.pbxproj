@@ -16,6 +16,7 @@
 		C747677F13F632F2001A3359 /* Main.xib in Resources */ = {isa = PBXBuildFile; fileRef = C747677D13F632F2001A3359 /* Main.xib */; };
 		C75BE41213FEB0CB001A40EA /* DurationInputDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C75BE41113FEB0CB001A40EA /* DurationInputDelegate.m */; };
 		C75BE44113FF7634001A40EA /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = C75BE44013FF7634001A40EA /* clock.png */; };
+		C760667E140A59F1006A63D1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C760667C140A59F1006A63D1 /* Localizable.strings */; };
 		C79A1EB513FC2E2C00CF3405 /* MBTTimerStatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C79A1EB613FC2E2C00CF3405 /* MBTTimerStatusItem.m */; };
 		C7D3799713F8D52C000E94F8 /* MBTUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D3799613F8D52C000E94F8 /* MBTUtils.m */; };
 		C7D3799A13F8DE39000E94F8 /* MBTStatusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D3799913F8DE39000E94F8 /* MBTStatusItem.m */; };
@@ -41,6 +42,8 @@
 		C75BE41113FEB0CB001A40EA /* DurationInputDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationInputDelegate.m; sourceTree = "<group>"; };
 		C75BE44013FF7634001A40EA /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		C7606676140A457C006A63D1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/Main.xib"; sourceTree = "<group>"; };
+		C760667D140A59F1006A63D1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C7606680140A5A4A006A63D1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C79A1EB213FC2D7E00CF3405 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = MBTTimerStatusItem.h; sourceTree = "<group>"; };
 		C79A1EB613FC2E2C00CF3405 /* MBTTimerStatusItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTTimerStatusItem.m; sourceTree = "<group>"; };
 		C7D3799513F8D52C000E94F8 /* MBTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBTUtils.h; sourceTree = "<group>"; };
@@ -147,6 +150,7 @@
 		C7606677140A4665006A63D1 /* L12N */ = {
 			isa = PBXGroup;
 			children = (
+				C760667C140A59F1006A63D1 /* Localizable.strings */,
 			);
 			path = L12N;
 			sourceTree = "<group>";
@@ -228,6 +232,7 @@
 				C747677F13F632F2001A3359 /* Main.xib in Resources */,
 				C75BE44113FF7634001A40EA /* clock.png in Resources */,
 				C70EE51013FF8B2700052F92 /* inverted_clock.png in Resources */,
+				C760667E140A59F1006A63D1 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +296,15 @@
 				C7606676140A457C006A63D1 /* zh-Hans */,
 			);
 			name = Main.xib;
+			sourceTree = "<group>";
+		};
+		C760667C140A59F1006A63D1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C760667D140A59F1006A63D1 /* zh-Hans */,
+				C7606680140A5A4A006A63D1 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		C79A1EB313FC2D7E00CF3405 /* MBTTimerStatusItem.h */ = {
