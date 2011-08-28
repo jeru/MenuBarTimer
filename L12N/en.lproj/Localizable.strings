@@ -21,3 +21,9 @@
 
 /* Short input unit for second */
 "secondUnit" = "s";
+
+/* The message to show the input duration string is wrong. */
+"Don't know what the time string means: %@." = "Don't know what the time string means: %@.";
+
+/* The caption of an error dialog. */
+"Dialog caption: Something Error" = "Something Error";

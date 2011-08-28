@@ -68,12 +68,19 @@ static void AutomatonPanic(NSString* msg) {
     NSString *text = [durationInput stringValue];
     int time = [MBTUtils parseTimeString:text];
     if (time < 0) {
+        NSString *caption =
+            NSLocalizedString(@"Dialog caption: Something Error",
+                              @"The caption of an error dialog.");
+        NSString *message =
+            NSLocalizedString(
+                @"Don't know what the time string means: %@.",
+                @"The message to show the input duration string is wrong.");
         NSAlert *theAlert = [NSAlert
-                             alertWithMessageText:@"Something wrong"
+                             alertWithMessageText:caption
                              defaultButton:@"OK"
                              alternateButton:nil
                              otherButton:nil
-                             informativeTextWithFormat:@"Don't know what the time string means: %s.", text];
+                             informativeTextWithFormat:message, text];
         [theAlert runModal];
     } else {
         [windowForInput orderOut:sender];
