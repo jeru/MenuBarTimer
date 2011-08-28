@@ -40,6 +40,7 @@
 		C75BE41013FEB0CB001A40EA /* DurationInputDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DurationInputDelegate.h; sourceTree = "<group>"; };
 		C75BE41113FEB0CB001A40EA /* DurationInputDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DurationInputDelegate.m; sourceTree = "<group>"; };
 		C75BE44013FF7634001A40EA /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		C7606676140A457C006A63D1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/Main.xib"; sourceTree = "<group>"; };
 		C79A1EB213FC2D7E00CF3405 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = MBTTimerStatusItem.h; sourceTree = "<group>"; };
 		C79A1EB613FC2E2C00CF3405 /* MBTTimerStatusItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBTTimerStatusItem.m; sourceTree = "<group>"; };
 		C7D3799513F8D52C000E94F8 /* MBTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBTUtils.h; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 		C747675913F632F2001A3359 = {
 			isa = PBXGroup;
 			children = (
+				C7606677140A4665006A63D1 /* L12N */,
 				C760665B1409520C006A63D1 /* Nibs */,
 				C75BE43F13FF751C001A40EA /* Images */,
 				C7D3799413F8D4BC000E94F8 /* MenuBarTimer-Utils */,
@@ -142,6 +144,13 @@
 			path = Nibs;
 			sourceTree = "<group>";
 		};
+		C7606677140A4665006A63D1 /* L12N */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = L12N;
+			sourceTree = "<group>";
+		};
 		C7D3798F13F8D15C000E94F8 /* MenuBarTimer-GUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +178,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C747679713F632F2001A3359 /* Build configuration list for PBXNativeTarget "MenuBarTimer" */;
 			buildPhases = (
+				C7606662140A17B8006A63D1 /* ShellScript */,
 				C747676013F632F2001A3359 /* Sources */,
 				C747676113F632F2001A3359 /* Frameworks */,
 				C747676213F632F2001A3359 /* Resources */,
@@ -223,6 +233,24 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C7606662140A17B8006A63D1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/L12N/zh-Hans.lproj/Main.xib.strings",
+			);
+			outputPaths = (
+				"$(SRCROOT)/Nibs/zh-Hans.lproj/Main.xib",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ ! -f L12N_Makefile ]; then\n    /usr/bin/env python L12N_MakefileGen.py > L12N_Makefile\nfi\n/usr/bin/env make L12N_Makefile";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C747676013F632F2001A3359 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -260,6 +288,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				C747677E13F632F2001A3359 /* en */,
+				C7606676140A457C006A63D1 /* zh-Hans */,
 			);
 			name = Main.xib;
 			sourceTree = "<group>";
